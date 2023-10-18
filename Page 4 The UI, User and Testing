@@ -1,0 +1,47 @@
+The UI, Users and Testing
+
+
+4.1 Design the UI 
+UI Mockup available at 
+https://www.figma.com/file/a9fCeJ22vDf6eO5uoAgltJ/Untitled?type=design&node-id=0%3A1&mode=design&t=6gMjtRLRVk8XyMoQ-1
+
+
+
+4.2 End users with appropriate personas and stories
+
+Persona :1 
+Silvia Bagatova  Age:38 
+From Sofia, Bulgaria 
+Education – Degree in creative media from the College of Paris 
+Motivation she is a hypochondriac, and her area has had some previous reports of contamination in the tap water 
+
+Goals and needs  
+Silvia is conducting the test to see if she can drink from her tap because she is afraid that it is going to be contaminated again like it was 4 months ago. 
+Her English is not the best, so it needs to be easy for her to understand if it is clean or not 
+
+Scenario  
+Silvia has poured some of her tap water into a cup and has placed her sensors into the water and waits a couple of seconds before she opens the Aqua Gaudian app she sees a notification pop up she doesn't understand what it means.
+She clicks the notification, and it brings her to a screen on the app where there is a red dot and next to it says Домашна чешмяна вода 
+This is still the same device she had set up 4 months ago when her estate's water got contaminated. She sees the dot which is normally green now red with a universal warning sign beside it.  
+
+
+Persona :2 
+Philipe Phobos age 19 
+From Coruna,Spain 
+Education Has just graduated from secondary school 
+Motivation- He was also told by his doctors recently that he is low in zinc and would like to know the zinc content
+of his water at home to see if he could benefit from drinking more of his own tap water rather than going out and spending money on zinc tablets 
+
+Goals and needs  
+His goal is to see what the zinc content of his drinking water is because he would like to follow the doctors instructions and get more zinc into his body  
+
+Scenario 
+Philip wakes up every morning and starts his usual routine which is taking a shower and take his vitamins.
+He remembers that recently the doctors had told him that he should take more zinc in his diet.
+He goes downstairs. With the AquaGuard and fill us up a glass of his tap water. The zinc levels seem to be good for that day and should be enough to balance out his zinc levels.
+He checks his phone and on his phone it says that the water has about 7.8% zinc in it which is enough to raise his zinc levels enough so that he dose not need to go and buy supplements  
+
+
+
+4.3 Describe how application will be tested
+Testing will be carried out in the following ways

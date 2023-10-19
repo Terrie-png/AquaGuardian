@@ -1,0 +1,7 @@
+Security and Privacy
+
+Data Process:
+
+- 5 Sensors value will be passed through and will checked if is int or float.
+- Account user login, password will be hashed when user is keying and passed through every process in a hashed condition.
+- data location will be comprimised where nobody will be able to access the data except the user himself.

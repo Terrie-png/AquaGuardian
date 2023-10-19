@@ -45,3 +45,8 @@ He checks his phone and on his phone it says that the water has about 7.8% zinc 
 
 4.3 Describe how application will be tested
 Testing will be carried out in the following ways
+1-Information testing will be carried out to make sure individual components work as expected and are giving expected data  
+2-Accuracy testing will check how accurate the data collected is 
+3-Security will be tested to see are users able to break into the admin login 
+4-Ask users to use the UI and see can they forcfully break the app in any way 
+5-Testing how the UI will handle "rubbish" inputs and choices and if appropriate responses will be given 

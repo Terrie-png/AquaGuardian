@@ -1,0 +1,22 @@
+4.1 security of the device
+-Authentication and authorization
+User will need to login with the provided account before accessing any of the functionality of the device. The device will need to authenticate then only can authorize any user to use the device.
+-Data Encryption on the device.
+Data that are sensitive will be encrypted. User passwords will be encrypted using cipher text technologies to keep the password encrypted throughout all the whole data process.
+
+4.2 server 
+-Sever security
+Server will be implemented strict access control and authentication mechanisms. There will be restrictions based on the user account role. Normal users will not have access to all the functionality like to access admin panel or control.
+-Authentications Tokens
+use secure authentication token like JWT token for API authentication. User login will be using a token so they can access the API with secure access. Each time user active the token will be updated and maintain the live. However, if the user was not online to long, it will require user to relogging for safety purposes. 
+-Request Limiting
+limiting the same user request in a short period of time to prevent DDOS and abuse.
+4.3 storage
+-Access controls
+Implement strict control and permissions on the database. Based on the role, the data will be limited to access. Only specific user will be able to access the database.
+-Data Backup
+To prevent the data losses, data will be backup frequently. 
+-Using prepare statement
+By using prepared statements this will prevent SQL injection attack and enhance the database security. 
+-HTTPS
+use secure protocol of HTTPS to transfer from server to database or database to server to prevent data intrusion during transit.

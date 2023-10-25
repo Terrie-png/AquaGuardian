@@ -45,10 +45,9 @@ fun MainPage(){
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Header(){
-    CenterAlignedTopAppBar(title = { Text(stringResource(R.string.app_name))},modifier = Modifier.background(color = Color(
-        id = R.color.primary
-    )))
+    CenterAlignedTopAppBar(title = { Text(stringResource(R.string.app_name))},modifier = Modifier)
 }
+
 //
 //
 //@Composable

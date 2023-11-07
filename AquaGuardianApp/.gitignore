@@ -1,5 +1,15 @@
-<<<<<<< HEAD
-node_modules
-=======
-node_modules
->>>>>>> e2fd8feb887e318ca682b982daf19006334ba337
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties

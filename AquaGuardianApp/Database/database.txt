@@ -7,5 +7,12 @@ CREATE TABLE Sensors (
     UNIQUE KEY unique_sensor (sensor_name)
 );
 
+CREATE TABLE SensorData (
+    data_id INT AUTO_INCREMENT PRIMARY KEY,
+    sensor_id INT,
+    timestamp DATETIME NOT NULL,
+    value FLOAT NOT NULL,
+    FOREIGN KEY (sensor_id) REFERENCES Sensors(sensor_id)
+);
 
 

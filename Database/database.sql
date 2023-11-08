@@ -23,6 +23,14 @@ CREATE TABLE Users (
     role ENUM('admin', 'user') NOT NULL
 );
 
+-- Sample data for the "Sensors" table
+INSERT INTO Sensors (sensor_name, location)
+VALUES
+    (1,'Temperature Sensor', 'Bathroom Shower'),
+    (2,'TDS Sensor', 'Bathroom Sink'),
+    (3,'Turbidity Sensor', 'Kitchen Sink'),
+    (4,'GPS Module', 'Outdoor Garden');
+
 
 INSERT INTO users (user_id, name, password, role) VALUES
     (1, 'John Murphy', 'password123', 'admin'),

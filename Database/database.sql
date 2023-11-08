@@ -1,4 +1,4 @@
-create databse Aquaguardian
+create database Aquaguardian;
 
 CREATE TABLE Sensors (
     sensor_id INT AUTO_INCREMENT PRIMARY KEY,

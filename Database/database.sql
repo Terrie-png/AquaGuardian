@@ -19,9 +19,12 @@ CREATE TABLE SensorData (
 CREATE TABLE Users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
+    username VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
     role ENUM('admin', 'user') NOT NULL
 );
+
 
 -- Sample data for the "Sensors" table
 INSERT INTO Sensors (sensor_id, sensor_name, location)
@@ -44,8 +47,9 @@ VALUES
     (7, 3, '2023-10-26 17:15:00', 1004.9),
     (8, 4, '2023-10-26 18:45:00', 810);
 
-INSERT INTO users (user_id, name, password, role) VALUES
-    (1, 'John Murphy', 'password123', 'admin'),
-    (2, 'Jane Burns', 'userpass456', 'user'),
-    (3, 'Alice Johnson', 'securePwd789', 'user'),
-    (4, 'Matthew Brady', 'topSecret101', 'admin');
+INSERT INTO Users (user_id, name, username, email, password, role) VALUES
+    (1, 'John Murphy', 'john_m', 'john01@gmail.com', 'password123', 'admin'),
+    (2, 'Jane Burns', 'jane_b', 'jane02@yahoo.com', 'userpass456', 'user'),
+    (3, 'Alice Johnson', 'alice_j', 'alice03@yahoo.com', 'securePwd789', 'user'),
+    (4, 'Matthew Brady', 'matthew_b', 'matthew04@gmail.com', 'topSecret101', 'admin');
+

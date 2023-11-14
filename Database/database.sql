@@ -24,7 +24,7 @@ CREATE TABLE Users (
 );
 
 -- Sample data for the "Sensors" table
-INSERT INTO Sensors (sensor_name, location)
+INSERT INTO Sensors (sensor_id, sensor_name, location)
 VALUES
     (1,'Temperature Sensor', 'Bathroom Shower'),
     (2,'TDS Sensor', 'Bathroom Sink'),

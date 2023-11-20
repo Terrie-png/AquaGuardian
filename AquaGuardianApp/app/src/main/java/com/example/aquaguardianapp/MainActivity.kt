@@ -28,6 +28,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -45,33 +46,50 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavBackStackEntry
+import androidx.navigation.NavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.navigation
+import androidx.navigation.compose.rememberNavController
+
+
+// Co-Pilot was used for this project
+
+// Navigation code source
+//https://github.com/philipplackner/NestedNavigationGraphsGuide.git
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             AquaGuardianAppTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-
-                ) {
-                    Logins()
-                }
             }
         }
     }
 }
 @Composable
 fun MyApp(modifier: Modifier = Modifier) {
+    val navController = rememberNavController()
+    val whenStarting = navController.currentBackStackEntry?.destination?.route == "OnboardingScreen" // if the current route is the onboarding screen, then we are starting the app for the first time
 
-    var shouldShowOnboarding by remember { mutableStateOf(true) }
-
-    Surface(modifier= modifier.fillMaxSize(),color=(Color(0xFF00C2FF))) {
-        if (shouldShowOnboarding) {
-            OnboardingScreen(onContinueClicked = { shouldShowOnboarding = false })
+    Surface(modifier = modifier.fillMaxSize(), color = (Color(0xFF00C2FF))) {
+        if (whenStarting) {
+            OnboardingScreen(onContinueClicked = { navController.navigate("login") })  // if we are starting the app for the first time, then show the onboarding screen
         } else {
-            Logins()
+            NavHost(navController = navController, startDestination = "OnboardingScreen") { // otherwise show the main navigation graph
+                composable("OnboardingScreen") {
+                    OnboardingScreen(onContinueClicked = { navController.navigate("login") })
+                }
+                composable("login") {
+                    Logins(loginSuccess = { navController.navigate("mainMenu") })
+                }
+                composable("mainMenu") {
+                    MainMenu(logout = { navController.navigate("login") })
+                }
+            }
         }
     }
 }
@@ -166,8 +184,9 @@ fun loginTextBox() {
     )
 }
 
-@Composable                                                     
-private fun Logins(
+@Composable
+fun MainMenu(
+    logout: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -183,11 +202,69 @@ private fun Logins(
             fontFamily = FontFamily.Cursive
         )
     }
+    Column( modifier = modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally)
+    {
+        Button(
+            modifier = Modifier.padding(top = 40.dp).fillMaxWidth(),
+            onClick = {}
+        ) {
+            Text(text = "Active Devices",
+                fontSize = 50.sp,
+                fontFamily = FontFamily.Serif)
+
+        }
+        Button(
+            modifier = Modifier.padding(top = 40.dp).fillMaxWidth(),
+            onClick = {}
+        ) {
+            Text(text = "Add Device",
+                fontSize = 50.sp,
+                fontFamily = FontFamily.Serif)
+
+        }
+        Button(
+            modifier = Modifier.padding(top = 40.dp).fillMaxWidth(),
+            onClick = {}
+        ) {
+            Text(text = "Location",
+                fontSize = 50.sp,
+                fontFamily = FontFamily.Serif)
+
+        }
+        Button(
+            onClick = { logout() },
+            modifier = Modifier.padding(top = 120.dp)
+        ) {
+            Text(text = "Logout",
+                fontSize = 50.sp,
+                fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+                fontFamily = FontFamily.Cursive)
+
+        }
+    }
+}
+
+@Composable
+fun Logins(
+    loginSuccess: () -> Unit,
+    modifier: Modifier = Modifier,
+
+) {
     Column(
         modifier = modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Top,
+        verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Text(
+            text = "Aqua Guardian",
+            modifier = Modifier.padding(top = 30.dp),
+            fontSize = 50.sp,
+            fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+            color = Color.White,
+            fontFamily = FontFamily.Cursive
+        )
         Image(
             painter = painterResource(id = R.drawable.ic_launcher_foreground),
             contentDescription = "Aqua Guardian Logo",
@@ -196,22 +273,13 @@ private fun Logins(
                 .size(200.dp)
 
         )
-    }
-    Column(
-        modifier = modifier.padding(bottom = 20.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
+
         loginTextBox()
         Spacer(modifier = Modifier.size(10.dp))
         PasswordTextField()
-    }
-    Column( modifier = modifier.padding(bottom = 20.dp),
-        verticalArrangement = Arrangement.Bottom,
-        horizontalAlignment = Alignment.CenterHorizontally) {
         Button(
             modifier = Modifier.padding(top = 20.dp),
-            onClick = {}
+            onClick = { loginSuccess() }
         ) {
             Text(
                 text = "Login",
@@ -219,7 +287,6 @@ private fun Logins(
                 fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
                 fontFamily = FontFamily.Cursive
             )
-
         }
     }
 }
@@ -233,36 +300,11 @@ fun OnboardingPreview() {
     }
 }
 
-@Composable
-private fun Login(name: String) {
-
-    val expanded = remember { mutableStateOf(false) }
-
-    val extraPadding = if (expanded.value) 48.dp else 0.dp
-
-    Surface(
-        modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
-    ) {
-        Row(modifier = Modifier.padding(24.dp)) {
-            Column(modifier = Modifier
-                .weight(1f)
-                .padding(bottom = extraPadding)
-            ) {
-                Text(text = name)
-            }
-            ElevatedButton(
-                onClick = { expanded.value = !expanded.value }
-            ) {
-                Text(if (expanded.value) "Show less" else "Show more")
-            }
-        }
-    }
-}
 @Preview(showBackground = true, widthDp = 320)
 @Composable
 fun DefaultPreview() {
     AquaGuardianAppTheme {
-        Logins()
+        Logins(loginSuccess = {})
     }
 }
 
@@ -271,5 +313,13 @@ fun DefaultPreview() {
 fun MyAppPreview() {
     AquaGuardianAppTheme {
         MyApp(Modifier.fillMaxSize())
+    }
+}
+
+@Preview
+@Composable
+fun MainMenuPreview() {
+    AquaGuardianAppTheme {
+        MainMenu(logout = {})
     }
 }

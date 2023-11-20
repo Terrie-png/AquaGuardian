@@ -16,12 +16,12 @@
         android:fontFamily="@font/kaushan_script"
         android:text="Aqua Guardian"
         android:textColor="@color/white"
-        android:textSize="24sp" />
+        android:textSize="34sp" />
 
     <ImageView
         android:id="@+id/ivLogo"
         android:layout_width="395dp"
-        android:layout_height="130dp"
+        android:layout_height="150dp"
         android:layout_below="@id/tvLogo"
         android:layout_marginTop="20dp"
         android:src="@drawable/AGLOGO" />
@@ -40,33 +40,47 @@
             android:id="@+id/etUsername"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:paddingLeft="20dp"
+            android:background="@drawable/layout_bg"
             android:hint="Username" />
 
         <EditText
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
+            android:paddingLeft="20dp"
+            android:layout_marginTop="10dp"
             android:inputType="textPassword"
+            android:background="@drawable/layout_bg"
             android:hint="Password" />
 
         <EditText
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
+            android:paddingLeft="20dp"
+            android:layout_marginTop="10dp"
             android:inputType="textEmailAddress"
+            android:background="@drawable/layout_bg"
             android:hint="Email" />
 
         <EditText
             android:id="@+id/etPhoneNumber"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
+            android:paddingLeft="20dp"
+            android:layout_marginTop="10dp"
             android:inputType="phone"
+            android:background="@drawable/layout_bg"
             android:hint="Phone Number" />
 
         <EditText
             android:id="@+id/etAddress"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
+            android:paddingLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/layout_bg"
             android:hint="Address" />
 
         <Button

@@ -16,14 +16,14 @@
         android:fontFamily="@font/kaushan_script"
         android:text="Aqua Guardian"
         android:textColor="@color/white"
-        android:textSize="34sp" />
+        android:textSize="48sp" />
 
     <ImageView
         android:id="@+id/ivLogo"
-        android:layout_width="395dp"
-        android:layout_height="150dp"
+        android:layout_width="wrap_content"
+        android:layout_height="173dp"
         android:layout_below="@id/tvLogo"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="-3dp"
         android:src="@drawable/AGLOGO" />
 
     <LinearLayout
@@ -41,6 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:paddingLeft="20dp"
+            android:inputType="textVisiblePassword|textNoSuggestions"
             android:background="@drawable/layout_bg"
             android:hint="Username" />
 
@@ -80,6 +81,7 @@
             android:layout_height="48dp"
             android:paddingLeft="20dp"
             android:layout_marginTop="10dp"
+            android:inputType="text"
             android:background="@drawable/layout_bg"
             android:hint="Address" />
 
@@ -87,8 +89,12 @@
             android:id="@+id/btnRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/roundedbutton"
+            android:fontFamily="@font/kaushan_script"
             android:text="Register"
-            android:layout_marginTop="16dp" />
+            android:textColor="@color/white"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/tvLogin"
@@ -96,7 +102,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
-            android:text="Already have an account? Login Here"
-            android:textColor="#0000FF" />
+            android:textSize="17dp"
+            android:text="Already have an account?" />
     </LinearLayout>
 </RelativeLayout>

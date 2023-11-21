@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">AquaGuardianApp</string>
+<string name="app_name" translatable="false">AquaGuardianApp</string>
+    <string name="aglogo_description">Logo\n</string>
 </resources>

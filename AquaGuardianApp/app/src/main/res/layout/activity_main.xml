@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#00c2ff"
     android:padding="16dp"
-    tools:context=".RegisterActivity">
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/tvLogo"
@@ -20,15 +20,15 @@
 
     <ImageView
         android:id="@+id/ivLogo"
-        android:layout_width="376dp"
-        android:layout_height="235dp"
+        android:layout_width="387dp"
+        android:layout_height="306dp"
         android:layout_below="@id/tvLogo"
         android:layout_marginTop="15dp"
         android:src="@drawable/mainlogo" />
 
     <LinearLayout
-        android:layout_width="290dp"
-        android:layout_height="187dp"
+        android:layout_width="wrap_content"
+        android:layout_height="255dp"
         android:layout_below="@id/ivLogo"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="26dp"
@@ -36,7 +36,7 @@
         android:padding="16dp">
 
         <Button
-            android:id="@+id/btnRegister"
+            android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -44,16 +44,30 @@
             android:fontFamily="@font/kaushan_script"
             android:text="Login"
             android:textColor="@color/white"
-            android:textSize="24sp" />
+            android:textSize="34sp" />
 
 
         <TextView
-            android:id="@+id/tvLoginLink"
+            android:id="@+id/tvRegisterLink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Login Here"
-            android:textColor="#0075ff"
-            android:textSize="17dp" />
+            android:fontFamily="@font/kaushan_script"
+            android:text="Register"
+            android:textColor="@color/white"
+            android:textSize="34sp" />
+
+        <TextView
+            android:id="@+id/tvLoginSlogan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/kaushan_script"
+            android:text="Gaurding Your Hydration"
+            android:textColor="@color/white"
+            android:textSize="32dp" />
     </LinearLayout>
+
+
 </RelativeLayout>

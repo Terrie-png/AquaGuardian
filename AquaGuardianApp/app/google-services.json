@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1034175535967",
+    "project_id": "aquaguardianapp",
+    "storage_bucket": "aquaguardianapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1034175535967:android:b3633da45b01b3bcd9f4ea",
+        "android_client_info": {
+          "package_name": "com.example.aquaguardianapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDT0iue4i7dsrt0okRiXdbaOGpUw6ZM8LA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

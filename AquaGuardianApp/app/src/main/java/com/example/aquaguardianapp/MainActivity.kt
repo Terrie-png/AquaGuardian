@@ -65,17 +65,16 @@ import kotlinx.coroutines.delay
 import locations
 
 
-// Co-Pilot was used for this project
+// ___________References___________
 
+// Co-Pilot was used for this project
 // Navigation code source
 //https://github.com/philipplackner/NestedNavigationGraphsGuide.git
-
 // Animation
 //https://github.com/cp-radhika-s/CoolButtonClickEffects/blob/main/app/src/main/java/com/app/click_effects/MainActivity.kt
 
 
 class MainActivity : ComponentActivity() {
-    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {

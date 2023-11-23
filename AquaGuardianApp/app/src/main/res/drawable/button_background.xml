@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- This drawable is used when the button is pressed -->
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#D3D3D3"/> <!-- Slightly darker shade for pressed state -->
+            <corners android:radius="4dp"/> <!-- Adjust the radius to change the roundness of corners -->
+        </shape>
+    </item>
+
+    <!-- Default drawable for the button -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#F0F0F0"/> <!-- Button color, change as needed -->
+            <corners android:radius="4dp"/> <!-- Match the radius with the pressed state -->
+        </shape>
+    </item>
+</selector>

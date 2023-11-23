@@ -35,55 +35,68 @@
             android:textColor="@color/white"
             android:textSize="29sp" />
     </RelativeLayout>
+
     <!-- Active Devices Button -->
     <LinearLayout
+        android:id="@+id/btActiveDevices"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="9dp"
+        android:elevation="8dp"
+        android:stateListAnimator="@null"
         android:background="@drawable/button_background"
-        android:layout_margin="10dp"
-        android:padding="16dp"
         android:clickable="true"
-        android:focusable="true">
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="16dp">
 
         <ImageView
             android:layout_width="69dp"
             android:layout_height="69dp"
-            android:src="@drawable/baseline_phone_iphone_24" />
+            android:src="@drawable/phone" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginStart="8dp"
-        android:gravity="center_vertical">
-
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Active Devices"
-            android:textAppearance="?attr/textAppearanceButton"
-            android:textColor="@color/aquablue"
-            android:textSize="32dp"
-            android:textStyle="bold" />
+            android:layout_marginStart="8dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Check your current linked devices on this account"
-            android:textSize="12sp"
-            android:textColor="@color/black" /> <!-- Define this in your colors.xml -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Active Devices"
+                android:textAppearance="?attr/textAppearanceButton"
+                android:textColor="@color/darkblue"
+                android:textSize="32dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Check your current linked devices on this account"
+                android:textColor="@color/black"
+                android:textSize="12sp" /> <!-- Define this in your colors.xml -->
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
-    <!-- Active Devices Button -->
+    <!-- Add Devices Button -->
     <LinearLayout
+        android:id="@+id/btAddDevices"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:background="@drawable/button_background"
-        android:layout_margin="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="9dp"
+        android:elevation="8dp"
+        android:stateListAnimator="@null"
         android:padding="16dp"
         android:clickable="true"
         android:focusable="true">
@@ -91,7 +104,7 @@
         <ImageView
             android:layout_width="69dp"
             android:layout_height="69dp"
-            android:src="@drawable/baseline_phone_iphone_24" />
+            android:src="@drawable/add" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -103,18 +116,170 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Active Devices"
+                android:text="Add Devices"
                 android:textAppearance="?attr/textAppearanceButton"
-                android:textColor="@color/aquablue"
+                android:textColor="@color/darkblue"
                 android:textSize="32dp"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Check your current linked devices on this account"
+                android:text="Add a Aqua Guardian to your current account"
                 android:textSize="12sp"
                 android:textColor="@color/black" /> <!-- Define this in your colors.xml -->
         </LinearLayout>
     </LinearLayout>
+    <!-- Locations Button -->
+    <LinearLayout
+        android:id="@+id/btLocations"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/button_background"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="9dp"
+        android:elevation="8dp"
+        android:stateListAnimator="@null"
+        android:padding="16dp"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:layout_width="69dp"
+            android:layout_height="69dp"
+            android:src="@drawable/locations" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="8dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Locations"
+                android:textAppearance="?attr/textAppearanceButton"
+                android:textColor="@color/darkblue"
+                android:textSize="32dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your most popular locations"
+                android:textSize="12sp"
+                android:textColor="@color/black" /> <!-- Define this in your colors.xml -->
+        </LinearLayout>
+    </LinearLayout>
+    <!-- History Button -->
+    <LinearLayout
+        android:id="@+id/btHistory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/button_background"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="9dp"
+        android:elevation="8dp"
+        android:stateListAnimator="@null"
+        android:padding="16dp"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:layout_width="69dp"
+            android:layout_height="69dp"
+            android:src="@drawable/history" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="8dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="History"
+                android:textAppearance="?attr/textAppearanceButton"
+                android:textColor="@color/darkblue"
+                android:textSize="32dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View recent updates around your area"
+                android:textSize="12sp"
+                android:textColor="@color/black" /> <!-- Define this in your colors.xml -->
+        </LinearLayout>
+    </LinearLayout>
+    <!-- Settings Button -->
+    <LinearLayout
+        android:id="@+id/btSettings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="9dp"
+        android:elevation="8dp"
+        android:stateListAnimator="@null"
+        android:background="@drawable/button_background"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <ImageView
+            android:layout_width="69dp"
+            android:layout_height="69dp"
+            android:src="@drawable/settings" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Settings"
+                android:textAppearance="?attr/textAppearanceButton"
+                android:textColor="@color/darkblue"
+                android:textSize="32dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Aqua Guardian Account settings"
+                android:textColor="@color/black"
+                android:textSize="12sp" /> <!-- Define this in your colors.xml -->
+        </LinearLayout>
+    </LinearLayout>
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/roundedbutton"
+        android:fontFamily="@font/kaushan_script"
+        android:text="Login"
+        android:textColor="@color/white"
+        android:textSize="34sp" />
 </LinearLayout>
+

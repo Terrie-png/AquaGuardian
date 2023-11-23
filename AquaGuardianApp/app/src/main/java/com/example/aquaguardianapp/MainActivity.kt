@@ -317,24 +317,23 @@ fun displayListView() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun loginTextBox( username : String, onPasswordChange : (String) -> Unit) {
+fun loginTextBox( username : String, onLoginChange : (String) -> Unit) {
     TextField(
         modifier = Modifier.height(50.dp),
         value = username,
-        onValueChange = { onPasswordChange(it) },
+        onValueChange = { onLoginChange(it) },
         label = { Text("Enter Username") },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text))
 }
 
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
-    fun confirmPasswordTextField() {
-        var password by rememberSaveable { mutableStateOf("") }
+    fun confirmPasswordTextField( confirmpassword : String, onConfirmPasswordChange : (String) -> Unit) {
         TextField(
             modifier = Modifier
                 .height(50.dp),
-            value = password,
-            onValueChange = { password = it },
+            value = confirmpassword,
+            onValueChange = { onConfirmPasswordChange (it) },
             label = { Text("Confirm password") },
             visualTransformation = PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
@@ -342,14 +341,13 @@ fun loginTextBox( username : String, onPasswordChange : (String) -> Unit) {
     }
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
-    fun emailTextBox() {
-        var text by remember { mutableStateOf("") }
-
+    fun emailTextBox( email : String, onEmailChange : (String) -> Unit) {
         TextField(
-            value = text,
-            onValueChange = { text = it },
-            label = { Text("Email") },
-        )
+            modifier = Modifier.height(50.dp),
+            value = email,
+            onValueChange = { onEmailChange(it) },
+            label = { Text("Enter Email") },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text))
     }
 
 
@@ -523,6 +521,9 @@ fun loginTextBox( username : String, onPasswordChange : (String) -> Unit) {
     {
         var username by remember { mutableStateOf("") }
         var password by remember { mutableStateOf("") }
+        var confirmpassword by remember { mutableStateOf("") }
+        var email by remember { mutableStateOf("") }
+        var errorMessage by remember { mutableStateOf("") }
 
         Column(
             modifier = modifier.fillMaxSize(),
@@ -550,13 +551,40 @@ fun loginTextBox( username : String, onPasswordChange : (String) -> Unit) {
             Spacer(modifier = Modifier.size(10.dp))
             PasswordTextField( password = password ) { password = it }
             Spacer(modifier = Modifier.size(10.dp))
-            confirmPasswordTextField()
+            confirmPasswordTextField( confirmpassword = confirmpassword ) { confirmpassword = it }
             Spacer(modifier = Modifier.size(10.dp))
-            emailTextBox()
+            emailTextBox( email = email ) { email = it }
+
+            if (errorMessage.isNotBlank()) {
+                Text(
+                    text = errorMessage,
+                    modifier = Modifier.padding(top = 10.dp),
+                    fontSize = 20.sp,
+                    fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+                    color = Color.Red,
+                )
+            }
+
             Button(
                 modifier = Modifier.padding(top = 20.dp),
-                onClick = { registerSuccess() }
-            ) {
+                onClick = {
+                    if (username.isNotBlank() && password.isNotBlank()&& confirmpassword == password && email.isNotBlank()) {
+                        registerSuccess()
+                    } else if (username.isBlank()) {
+                        errorMessage = "Please enter the username"
+                    } else if (password.isBlank()) {
+                        errorMessage = "Please enter the password"
+                    } else if(confirmpassword != password){
+                        errorMessage = "Passwords do not match"
+                    }
+                    else if(email.isBlank()){
+                        errorMessage = "Please enter the email"
+                    }
+                    else {
+                        errorMessage = "Information Invalid"
+                    }
+                }
+            ){
                 Text(
                     text = "Register",
                     fontSize = 40.sp,

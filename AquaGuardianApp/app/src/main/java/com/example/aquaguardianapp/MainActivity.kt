@@ -59,6 +59,23 @@ import androidx.core.app.ActivityCompat
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import android.content.Context
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material.*
+import androidx.compose.material3.Divider
+import androidx.compose.runtime.*
+import androidx.compose.ui.graphics.*
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.*
+import com.example.aquaguardianapp.ui.theme.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 
@@ -71,19 +88,102 @@ import androidx.navigation.compose.rememberNavController
 //https://github.com/DrVipinKumar/Android-Jetpack-Compose/tree/main/BluethoothJetpackCompose
 
 class MainActivity : ComponentActivity() {
+    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             AquaGuardianAppTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
+                    // on below line we are specifying modifier and color for our app
+                    modifier = Modifier.fillMaxSize()
                 ) {
-                    MyApp()
+
+                        // on below line we are display list view
+                        // method to display our list view.
+                        displayListView()
+                    }
                 }
             }
         }
     }
+
+fun getJSONData(courseList: MutableList<String>, ctx: Context) {
+    // on below line we are creating a retrofit
+    // builder and passing our base url
+    val retrofit = Retrofit.Builder()
+        .baseUrl("https://jsonkeeper.com/b/")
+        // on below line we are calling add
+        // Converter factory as Gson converter factory.
+        .addConverterFactory(GsonConverterFactory.create())
+        // at last we are building our retrofit builder.
+        .build()
+
+    // below line is to create an instance for our retrofit api class.
+    val retrofitAPI = retrofit.create(RetrofitAPI::class.java)
+
+    // on below line we are calling a method to get all the courses from API.
+    val call: Call<ArrayList<ListModal>> = retrofitAPI.getLanguages()
+
+    // on below line we are calling method to enqueue and calling
+    // all the data from array list.
+    call!!.enqueue(object : Callback<ArrayList<ListModal>?> {
+        override fun onResponse(
+            call: Call<ArrayList<ListModal>?>,
+            response: Response<ArrayList<ListModal>?>
+        ) {
+            // on below line we are checking if response is successful.
+            if (response.isSuccessful) {
+                // on below line we are creating a new list
+                var lst: ArrayList<ListModal> = ArrayList()
+
+                // on below line we are passing
+                // our response to our list
+                lst = response.body()!!
+
+                // on below line we are passing
+                // data from lst to course list.
+                for (i in 0 until lst.size) {
+                    // on below line we are adding data to course list.
+                    courseList.add(lst.get(i).languageName)
+                }
+            }
+        }
+
+        override fun onFailure(call: Call<ArrayList<ListModal>?>, t: Throwable) {
+            // displaying an error message in toast
+            Toast.makeText(ctx, "Fail to get the data..", Toast.LENGTH_SHORT)
+                .show()
+        }
+    })
+}
+
+@Composable
+fun displayListView() {
+    val context = LocalContext.current
+    // on below line we are creating and
+    // initializing our array list
+    val courseList = remember { mutableStateListOf<String>() }
+    getJSONData(courseList, context)
+
+    // on the below line we are creating a
+    // lazy column for displaying a list view.
+    // on below line we are calling lazy column
+    // for displaying listview.
+    LazyColumn {
+        // on below line we are populating
+        // items for listview.
+        items(courseList) { language ->
+            // on below line we are specifying ui for each item of list view.
+            // we are specifying a simple text for each item of our list view.
+            Text(language, modifier = Modifier.padding(15.dp))
+            // on below line we are specifying
+            // divider for each list item
+            Divider()
+        }
+    }
+}
+
 
     @Composable
     fun MyApp(modifier: Modifier = Modifier) {
@@ -205,18 +305,26 @@ class MainActivity : ComponentActivity() {
 
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
-    fun PasswordTextField() {
-        var password by rememberSaveable { mutableStateOf("") }
+    fun PasswordTextField( password : String, onPasswordChange : (String) -> Unit) {
         TextField(
-            modifier = Modifier
-                .height(50.dp),
+            modifier = Modifier.height(50.dp),
             value = password,
-            onValueChange = { password = it },
-            label = { Text("Enter password") },
-            visualTransformation = PasswordVisualTransformation(),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
-        )
+            onValueChange = { onPasswordChange(it) },
+                label = { Text("Enter password") },
+                visualTransformation = PasswordVisualTransformation(),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password))
     }
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun loginTextBox( username : String, onPasswordChange : (String) -> Unit) {
+    TextField(
+        modifier = Modifier.height(50.dp),
+        value = username,
+        onValueChange = { onPasswordChange(it) },
+        label = { Text("Enter Username") },
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text))
+}
 
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
@@ -232,19 +340,6 @@ class MainActivity : ComponentActivity() {
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
         )
     }
-
-    @OptIn(ExperimentalMaterial3Api::class)
-    @Composable
-    fun loginTextBox() {
-        var text by remember { mutableStateOf("") }
-
-        TextField(
-            value = text,
-            onValueChange = { text = it },
-            label = { Text("Username") },
-        )
-    }
-
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun emailTextBox() {
@@ -353,6 +448,11 @@ class MainActivity : ComponentActivity() {
         modifier: Modifier = Modifier,
 
         ) {
+
+        var username by remember { mutableStateOf("") }
+        var password by remember { mutableStateOf("") }
+        var errorMessage by remember { mutableStateOf("") }
+
         Column(
             modifier = modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Center,
@@ -375,12 +475,33 @@ class MainActivity : ComponentActivity() {
 
             )
 
-            loginTextBox()
+            loginTextBox(username = username) { username = it }
             Spacer(modifier = Modifier.size(10.dp))
-            PasswordTextField()
+            PasswordTextField(password = password) { password = it }
+
+            if (errorMessage.isNotBlank()) {
+                Text(
+                    text = errorMessage,
+                    modifier = Modifier.padding(top = 10.dp),
+                    fontSize = 20.sp,
+                    fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+                    color = Color.Red,
+                )
+            }
+
             Button(
                 modifier = Modifier.padding(top = 20.dp),
-                onClick = { loginSuccess() }
+                onClick = {
+                    if (username.isNotBlank() && password.isNotBlank()) {
+                        loginSuccess()
+                    } else if (username.isBlank() && password.isNotBlank()) {
+                        errorMessage = "Please enter the username"
+                    } else if (password.isBlank() && username.isNotBlank()) {
+                        errorMessage = "Please enter the password"
+                    } else {
+                        errorMessage = "Please enter username and password"
+                    }
+                }
             ) {
                 Text(
                     text = "Login",
@@ -393,13 +514,16 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-
     @Composable
     fun Registers(
         registerSuccess: () -> Unit,
         modifier: Modifier = Modifier,
 
-        ) {
+        )
+    {
+        var username by remember { mutableStateOf("") }
+        var password by remember { mutableStateOf("") }
+
         Column(
             modifier = modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Center,
@@ -422,9 +546,9 @@ class MainActivity : ComponentActivity() {
 
             )
 
-            loginTextBox()
+            loginTextBox(username = username) { username = it }
             Spacer(modifier = Modifier.size(10.dp))
-            PasswordTextField()
+            PasswordTextField( password = password ) { password = it }
             Spacer(modifier = Modifier.size(10.dp))
             confirmPasswordTextField()
             Spacer(modifier = Modifier.size(10.dp))
@@ -572,4 +696,4 @@ fun addDevices(
 
         }
     }
-}
+

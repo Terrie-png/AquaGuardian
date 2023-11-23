@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".DashboardActivity">
+
+    <RelativeLayout
+        android:id="@+id/header_title"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/aquablue">
+
+        <ImageView
+            android:id="@+id/ivLogo"
+            android:layout_width="100dp"
+            android:layout_height="52dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="10dp"
+            android:padding="2dp"
+            android:src="@drawable/mainlogo" />
+
+        <TextView
+            android:id="@+id/tvLogo"
+            android:layout_width="183dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="130dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/kaushan_script"
+            android:padding="2dp"
+            android:text="Aqua Guardian"
+            android:textColor="@color/white"
+            android:textSize="29sp" />
+    </RelativeLayout>
+    <!-- Active Devices Button -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/button_background"
+        android:layout_margin="10dp"
+        android:padding="16dp"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:layout_width="69dp"
+            android:layout_height="69dp"
+            android:src="@drawable/baseline_phone_iphone_24" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="8dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Active Devices"
+            android:textAppearance="?attr/textAppearanceButton"
+            android:textColor="@color/aquablue"
+            android:textSize="32dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Check your current linked devices on this account"
+            android:textSize="12sp"
+            android:textColor="@color/black" /> <!-- Define this in your colors.xml -->
+    </LinearLayout>
+</LinearLayout>
+    <!-- Active Devices Button -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/button_background"
+        android:layout_margin="10dp"
+        android:padding="16dp"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:layout_width="69dp"
+            android:layout_height="69dp"
+            android:src="@drawable/baseline_phone_iphone_24" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="8dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Active Devices"
+                android:textAppearance="?attr/textAppearanceButton"
+                android:textColor="@color/aquablue"
+                android:textSize="32dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Check your current linked devices on this account"
+                android:textSize="12sp"
+                android:textColor="@color/black" /> <!-- Define this in your colors.xml -->
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,11 +1,6 @@
-from collections.abc import Iterable
-import json
-from typing import Any, Type
 from flask_bcrypt import Bcrypt
-from traitlets import Instance
 from .base_model import BaseModel
 from flask import jsonify
-from flask_mysqldb import MySQL, MySQLdb
 
 class User(BaseModel):
     def __init__(self, id=None, name=None, email=None, password=None, role=None):

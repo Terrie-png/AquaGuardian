@@ -60,7 +60,6 @@ import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.ui.draw.clip
-import history
 import kotlinx.coroutines.delay
 import locations
 
@@ -85,7 +84,8 @@ class MainActivity : ComponentActivity() {
 
                         // on below line we are display list view
                         // method to display our list view.
-                        DisplayListView()
+                       // DisplayListView()
+                        MyApp()
                     }
                 }
             }
@@ -93,80 +93,80 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-fun getJSONData(courseList: MutableList<String>, ctx: Context) {
-    // on below line we are creating a retrofit  builder and passing our base url
+//fun getJSONData(courseList: MutableList<String>, ctx: Context) {
+//    // on below line we are creating a retrofit  builder and passing our base url
+//
+//    val retrofit = Retrofit.Builder()
+//        .baseUrl("https://jsonkeeper.com/b/")
+//        // on below line we are calling add Converter factory as Gson converter factory.
+//
+//        .addConverterFactory(GsonConverterFactory.create())
+//        // at last we are building our retrofit builder.
+//        .build()
+//
+//    // below line is to create an instance for our retrofit api class.
+//    val retrofitAPI = retrofit.create(RetrofitAPI::class.java)
+//
+//    // on below line we are calling a method to get all the courses from API.
+//    val call: Call<ArrayList<ListModal>> = retrofitAPI.getLanguages()
+//
+//    // on below line we are calling method to enqueue and calling
+//    // all the data from array list.
+//    call!!.enqueue(object : Callback<ArrayList<ListModal>?> {
+//        override fun onResponse(
+//            call: Call<ArrayList<ListModal>?>,
+//            response: Response<ArrayList<ListModal>?>
+//        ) {
+//            // on below line we are checking if response is successful.
+//            if (response.isSuccessful) {
+//                // on below line we are creating a new list
+//
+//                // on below line we are passing
+//                // our response to our list
+//                var lst: ArrayList<ListModal> = response.body()!!
+//
+//                // on below line we are passing
+//                // data from lst to course list.
+//                for (i in 0 until lst.size) {
+//                    // on below line we are adding data to course list.
+//                    courseList.add(lst.get(i).languageName)
+//                }
+//                Log.d("MainActivity", "Api call successful")
+//            }
+//        }
+//
+//        override fun onFailure(call: Call<ArrayList<ListModal>?>, t: Throwable) {
+//            Log.d("MainActivity", "Api call failed")
+//
+//            // displaying an error message in toast
+//            Toast.makeText(ctx, "Fail to get the data..", Toast.LENGTH_SHORT)
+//                .show()
+//        }
+//    })
+//}
 
-    val retrofit = Retrofit.Builder()
-        .baseUrl("https://jsonkeeper.com/b/")
-        // on below line we are calling add Converter factory as Gson converter factory.
-
-        .addConverterFactory(GsonConverterFactory.create())
-        // at last we are building our retrofit builder.
-        .build()
-
-    // below line is to create an instance for our retrofit api class.
-    val retrofitAPI = retrofit.create(RetrofitAPI::class.java)
-
-    // on below line we are calling a method to get all the courses from API.
-    val call: Call<ArrayList<ListModal>> = retrofitAPI.getLanguages()
-
-    // on below line we are calling method to enqueue and calling
-    // all the data from array list.
-    call!!.enqueue(object : Callback<ArrayList<ListModal>?> {
-        override fun onResponse(
-            call: Call<ArrayList<ListModal>?>,
-            response: Response<ArrayList<ListModal>?>
-        ) {
-            // on below line we are checking if response is successful.
-            if (response.isSuccessful) {
-                // on below line we are creating a new list
-
-                // on below line we are passing
-                // our response to our list
-                var lst: ArrayList<ListModal> = response.body()!!
-
-                // on below line we are passing
-                // data from lst to course list.
-                for (i in 0 until lst.size) {
-                    // on below line we are adding data to course list.
-                    courseList.add(lst.get(i).languageName)
-                }
-                Log.d("MainActivity", "Api call successful")
-            }
-        }
-
-        override fun onFailure(call: Call<ArrayList<ListModal>?>, t: Throwable) {
-            Log.d("MainActivity", "Api call failed")
-
-            // displaying an error message in toast
-            Toast.makeText(ctx, "Fail to get the data..", Toast.LENGTH_SHORT)
-                .show()
-        }
-    })
-}
-
-@Composable
-fun DisplayListView() {
-    val context = LocalContext.current
-    // on below line we are creating and
-    // initializing our array list
-    val courseList = remember { mutableStateListOf<String>() }
-    getJSONData(courseList, context)
-
-    // on the below line we are creating a lazy column for displaying a list view.on below line we are calling lazy column for displaying listview.
-    LazyColumn {
-        // on below line we are populating
-        // items for listview.
-        items(courseList) { language ->
-            // on below line we are specifying ui for each item of list view.
-            // we are specifying a simple text for each item of our list view.
-            Text(language, modifier = Modifier.padding(15.dp))
-            // on below line we are specifying
-            // divider for each list item
-            Divider()
-        }
-    }
-}
+//@Composable
+//fun DisplayListView() {
+//    val context = LocalContext.current
+//    // on below line we are creating and
+//    // initializing our array list
+//    val courseList = remember { mutableStateListOf<String>() }
+//    getJSONData(courseList, context)
+//
+//    // on the below line we are creating a lazy column for displaying a list view.on below line we are calling lazy column for displaying listview.
+//    LazyColumn {
+//        // on below line we are populating
+//        // items for listview.
+//        items(courseList) { language ->
+//            // on below line we are specifying ui for each item of list view.
+//            // we are specifying a simple text for each item of our list view.
+//            Text(language, modifier = Modifier.padding(15.dp))
+//            // on below line we are specifying
+//            // divider for each list item
+//            Divider()
+//        }
+//    }
+//}
 
 
     @Composable

@@ -1,5 +1,7 @@
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,11 +15,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.aquaguardianapp.AnimatedShapeTouch
+import com.example.aquaguardianapp.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -33,14 +37,24 @@ fun MainMenu(
         modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
+    ){
+
         TopAppBar(title = {
             Text(
                 text = "Main Menu",
                 fontSize = 50.sp,
                 fontWeight = FontWeight.Bold,
                 fontFamily = FontFamily.Cursive
+
             )
+//
+//            Image(
+//                painter = painterResource(id = R.drawable.ic_launcher_foreground),
+//                contentDescription = "Aqua Guardian Logo",
+//                modifier = Modifier
+//                    .size(40.dp)
+//
+//            )
 
         })
     }

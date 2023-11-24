@@ -51,6 +51,7 @@ fun OnboardingScreen(
                 .size(400.dp)
 
         )
+
         Button(
             modifier = Modifier.padding(top = 40.dp),
             onClick = onContinueClicked

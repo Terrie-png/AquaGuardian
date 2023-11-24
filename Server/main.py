@@ -1,4 +1,3 @@
-import threading
 from src.functions import app, channel, pnb
 from src.controllers import MySubscribeCallback
 from src.routes import api_v1

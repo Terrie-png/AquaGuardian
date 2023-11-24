@@ -36,26 +36,23 @@
         android:background="@drawable/layout_bg"
         android:orientation="vertical"
         android:padding="16dp">
-
+        <EditText
+            android:id="@+id/etName"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/layout_bg"
+            android:hint="Name"
+            android:inputType="text"
+            android:paddingLeft="20dp" />
         <EditText
             android:id="@+id/etUsername"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/layout_bg"
             android:hint="Username"
             android:inputType="textVisiblePassword|textNoSuggestions"
             android:paddingLeft="20dp" />
-
-        <EditText
-            android:id="@+id/etPassword"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/layout_bg"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:paddingLeft="20dp" />
-
         <EditText
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
@@ -65,7 +62,15 @@
             android:hint="Email"
             android:inputType="textEmailAddress"
             android:paddingLeft="20dp" />
-
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/layout_bg"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:paddingLeft="20dp" />
         <EditText
             android:id="@+id/etPhoneNumber"
             android:layout_width="match_parent"

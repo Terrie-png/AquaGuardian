@@ -276,9 +276,10 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:background="@drawable/roundedbutton"
+        android:background="@drawable/logoutbtn"
         android:fontFamily="@font/kaushan_script"
-        android:text="Login"
+        android:layout_gravity="center_horizontal"
+        android:text="Log Out"
         android:textColor="@color/white"
         android:textSize="34sp" />
 </LinearLayout>

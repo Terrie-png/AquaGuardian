@@ -1,18 +1,30 @@
 create database Aquaguardian;
 
-CREATE TABLE Batch(
-    batch_id INT AUTO_INCREMENT PRIMARY KEY,
-    timestamp DATETIME NOT NULL
-);
+-- CREATE TABLE Batch(
+--     batch_id INT AUTO_INCREMENT PRIMARY KEY,
+--     timestamp DATETIME NOT NULL
+-- );
+
+-- CREATE TABLE SensorData (
+--     data_id INT AUTO_INCREMENT PRIMARY KEY,
+--     batch_id INT NOT NULL,
+--     analog_in FLOAT NOT NULL,
+--     voltage_in FLOAT NOT NULL,
+--     data_type VARCHAR(255) NOT NULL,
+--     FOREIGN KEY (batch_id) REFERENCES Batch(batch_id)
+-- );
 
 CREATE TABLE SensorData (
     data_id INT AUTO_INCREMENT PRIMARY KEY,
-    batch_id INT NOT NULL,
-    analog_in FLOAT NOT NULL,
-    voltage_in FLOAT NOT NULL,
-    data_type VARCHAR(255) NOT NULL,
-    FOREIGN KEY (batch_id) REFERENCES Batch(batch_id)
+    ph_analog_in FLOAT NOT NULL,
+    ph_voltage_in FLOAT NOT NULL,
+    tds_analog_in FLOAT NOT NULL,
+    tds_voltage_in FLOAT NOT NULL,
+    turbidity_analog_in FLOAT NOT NULL,
+    turbidity_voltage_in FLOAT NOT NULL,
 );
+
+
 
 
 CREATE TABLE Users (

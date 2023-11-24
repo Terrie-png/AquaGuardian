@@ -1,18 +1,17 @@
 create database Aquaguardian;
 
-CREATE TABLE Sensors (
-    sensor_id INT AUTO_INCREMENT PRIMARY KEY,
-    sensor_name VARCHAR(255) NOT NULL,
-    location VARCHAR(255),
-    UNIQUE KEY unique_sensor (sensor_name)
+CREATE TABLE Batch(
+    batch_id INT AUTO_INCREMENT PRIMARY KEY,
+    timestamp DATETIME NOT NULL
 );
 
 CREATE TABLE SensorData (
     data_id INT AUTO_INCREMENT PRIMARY KEY,
-    sensor_id INT,
-    timestamp DATETIME NOT NULL,
-    value FLOAT NOT NULL,
-    FOREIGN KEY (sensor_id) REFERENCES Sensors(sensor_id)
+    batch_id INT NOT NULL,
+    analog_in FLOAT NOT NULL,
+    voltage_in FLOAT NOT NULL,
+    data_type VARCHAR(255) NOT NULL,
+    FOREIGN KEY (batch_id) REFERENCES Batch(batch_id)
 );
 
 
@@ -22,63 +21,26 @@ CREATE TABLE Users (
     username VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
+    remember_token VARCHAR(255),
     role ENUM('admin', 'user') NOT NULL
 );
 
-CREATE TABLE Register(
-    register_id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES Users(user_id)
-);
-
-CREATE TABLE Login(
-    login_id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES Users(user_id)
-);
 
 
-CREATE TABLE Notifications(
-    notification_id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    sensor_id INT NOT NULL,
-    VARCHAR(255) NOT NULL
-    FOREIGN KEY (user_id) REFERENCES Users(user_id),
-    FOREIGN KEY (sensor_id) REFERENCES Sensors(sensor_id)
-);
-
-CREATE TABLE SensorThresholds(
-    threshold_id INT AUTO_INCREMENT PRIMARY KEY,
-    sensor_id INT NOT NULL,
-    min_value FLOAT NOT NULL,
-    max_value FLOAT NOT NULL,
-    FOREIGN KEY (sensor_id) REFERENCES Sensors(sensor_id)
-);
-
-
-
-
--- CREATE TABLE SensorDataHistory(
---     data_id INT AUTO_INCREMENT PRIMARY KEY,
---     sensor_id INT,
---     timestamp DATETIME NOT NULL,
---     value FLOAT NOT NULL,
---     FOREIGN KEY (sensor_id) REFERENCES Sensors(sensor_id)
--- );
 
 
 
 -- Sample data for the "Sensors" table
-INSERT INTO Sensors (sensor_id, sensor_name, location)
+INSERT INTO Sensors (sensor_id, sensor_name)
 VALUES
-    (1,'Temperature Sensor', 'Bathroom Shower'),
-    (2,'TDS Sensor', 'Bathroom Sink'),
-    (3,'Turbidity Sensor', 'Kitchen Sink'),
-    (4,'GPS Module', 'Outdoor Garden');
+    (1,'Temperature Sensor'),
+    (2,'TDS Sensor'),
+    (3,'Turbidity Sensor'),
+    (4,'GPS Module');
 
 
 -- Sample data for the "SensorData" table with data_id
-INSERT INTO SensorData (data_id, sensor_id, timestamp, value)
+INSERT INTO SensorData (data_id, sensor_id, timestamp, analog_in,  voltage_in)
 VALUES
     (1, 1, '2023-10-26 08:00:00', 25.5),
     (2, 2, '2023-10-26 09:30:00', 60.2),

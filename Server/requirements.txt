@@ -1,0 +1,7 @@
+pubnub
+flask
+flask_mysqldb
+flask_migrate
+flask_bcrypt
+pubnub
+python-dotenv

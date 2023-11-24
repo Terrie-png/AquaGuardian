@@ -5,3 +5,5 @@ flask_migrate
 flask_bcrypt
 pubnub
 python-dotenv
+pyjwt
+gunicorn

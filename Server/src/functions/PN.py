@@ -13,6 +13,5 @@ pnconfig.publish_key = os.getenv('PUBNUB_PUBLISH_KEY')
 pnconfig.user_id = os.getenv('PUBNUB_USER_ID')
 pnb = PubNub(pnconfig)
 
-
 channel = os.getenv('PUBNUB_CHANNEL')
 

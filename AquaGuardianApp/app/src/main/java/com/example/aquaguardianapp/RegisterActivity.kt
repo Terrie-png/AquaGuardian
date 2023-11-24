@@ -1,5 +1,6 @@
 package com.example.aquaguardianapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -12,30 +13,12 @@ import com.google.firebase.auth.FirebaseAuth
 
 class RegisterActivity : AppCompatActivity() {
 
-//    private lateinit var etUsername: EditText
-//    private lateinit var etPassword: EditText
-//    private lateinit var etEmail: EditText
-//    private lateinit var etPhoneNumber: EditText
-//    private lateinit var etAddress: EditText
-//    private lateinit var btnRegister: Button
-
     private lateinit var binding: ActivityRegisterBinding
     private lateinit var firebaseAuth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        //connecting the .xml layout file to kotlin file
-//        setContentView(R.layout.activity_register)
-//
-//        etUsername = findViewById(R.id.etUsername)
-//        etPassword = findViewById(R.id.etPassword)
-//        etEmail = findViewById(R.id.etEmail)
-//        etPhoneNumber = findViewById(R.id.etPhoneNumber)
-//        etAddress = findViewById(R.id.etAddress)
-//        btnRegister = findViewById(R.id.btnRegister)
-//
-//        btnRegister.setOnClickListener {
-//            registerUser()
-//        }
+
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -72,7 +55,10 @@ class RegisterActivity : AppCompatActivity() {
                 firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
                     if(it.isSuccessful){
                         Toast.makeText(this, "Registration successful.", Toast.LENGTH_SHORT).show()
-
+                        //Create an Intent to start the DashboardActivity
+                        val intent = Intent(this,DashboardActivity::class.java)
+                        startActivity(intent)
+                        finish()
                     }
                     else{
                         Toast.makeText(this,it.exception.toString(), Toast.LENGTH_SHORT)

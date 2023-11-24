@@ -1,11 +1,14 @@
 package com.example.aquaguardianapp
 
+import MainMenu
+import OnboardingScreen
+import Registers
+import addDevices
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Surface
@@ -15,311 +18,294 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.aquaguardianapp.ui.theme.AquaGuardianAppTheme
-import androidx.compose.foundation.layout.Row
-import androidx.compose.material3.ElevatedButton
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.icons.Icons
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.modifier.modifierLocalConsumer
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavBackStackEntry
-import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
+import android.content.Context
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.*
+import androidx.compose.material3.Divider
+import androidx.compose.runtime.*
+import androidx.compose.ui.graphics.*
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.*
+import com.example.aquaguardianapp.ui.theme.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import android.util.Log
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.foundation.interaction.collectIsPressedAsState
+import androidx.compose.material.ripple.rememberRipple
+import androidx.compose.ui.draw.clip
+import kotlinx.coroutines.delay
+import locations
 
+
+// ___________References___________
 
 // Co-Pilot was used for this project
-
 // Navigation code source
 //https://github.com/philipplackner/NestedNavigationGraphsGuide.git
+// Animation
+//https://github.com/cp-radhika-s/CoolButtonClickEffects/blob/main/app/src/main/java/com/app/click_effects/MainActivity.kt
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            AquaGuardianAppTheme {
+            AquaGuardianAppTheme { // A surface container using the 'background' color from the theme
+                Surface( // on below line we are specifying modifier and color for our app
+                    modifier = Modifier.fillMaxSize()
+                ) {
+
+                        // on below line we are display list view
+                        // method to display our list view.
+                       // DisplayListView()
+                        MyApp()
+                    }
+                }
             }
+        Log.d("MainActivity", "onCreate called")
         }
     }
-}
-@Composable
-fun MyApp(modifier: Modifier = Modifier) {
-    val navController = rememberNavController()
-    val whenStarting = navController.currentBackStackEntry?.destination?.route == "OnboardingScreen" // if the current route is the onboarding screen, then we are starting the app for the first time
 
-    Surface(modifier = modifier.fillMaxSize(), color = (Color(0xFF00C2FF))) {
-        if (whenStarting) {
-            OnboardingScreen(onContinueClicked = { navController.navigate("login") })  // if we are starting the app for the first time, then show the onboarding screen
-        } else {
-            NavHost(navController = navController, startDestination = "OnboardingScreen") { // otherwise show the main navigation graph
+//fun getJSONData(courseList: MutableList<String>, ctx: Context) {
+//    // on below line we are creating a retrofit  builder and passing our base url
+//
+//    val retrofit = Retrofit.Builder()
+//        .baseUrl("https://jsonkeeper.com/b/")
+//        // on below line we are calling add Converter factory as Gson converter factory.
+//
+//        .addConverterFactory(GsonConverterFactory.create())
+//        // at last we are building our retrofit builder.
+//        .build()
+//
+//    // below line is to create an instance for our retrofit api class.
+//    val retrofitAPI = retrofit.create(RetrofitAPI::class.java)
+//
+//    // on below line we are calling a method to get all the courses from API.
+//    val call: Call<ArrayList<ListModal>> = retrofitAPI.getLanguages()
+//
+//    // on below line we are calling method to enqueue and calling
+//    // all the data from array list.
+//    call!!.enqueue(object : Callback<ArrayList<ListModal>?> {
+//        override fun onResponse(
+//            call: Call<ArrayList<ListModal>?>,
+//            response: Response<ArrayList<ListModal>?>
+//        ) {
+//            // on below line we are checking if response is successful.
+//            if (response.isSuccessful) {
+//                // on below line we are creating a new list
+//
+//                // on below line we are passing
+//                // our response to our list
+//                var lst: ArrayList<ListModal> = response.body()!!
+//
+//                // on below line we are passing
+//                // data from lst to course list.
+//                for (i in 0 until lst.size) {
+//                    // on below line we are adding data to course list.
+//                    courseList.add(lst.get(i).languageName)
+//                }
+//                Log.d("MainActivity", "Api call successful")
+//            }
+//        }
+//
+//        override fun onFailure(call: Call<ArrayList<ListModal>?>, t: Throwable) {
+//            Log.d("MainActivity", "Api call failed")
+//
+//            // displaying an error message in toast
+//            Toast.makeText(ctx, "Fail to get the data..", Toast.LENGTH_SHORT)
+//                .show()
+//        }
+//    })
+//}
+
+//@Composable
+//fun DisplayListView() {
+//    val context = LocalContext.current
+//    // on below line we are creating and
+//    // initializing our array list
+//    val courseList = remember { mutableStateListOf<String>() }
+//    getJSONData(courseList, context)
+//
+//    // on the below line we are creating a lazy column for displaying a list view.on below line we are calling lazy column for displaying listview.
+//    LazyColumn {
+//        // on below line we are populating
+//        // items for listview.
+//        items(courseList) { language ->
+//            // on below line we are specifying ui for each item of list view.
+//            // we are specifying a simple text for each item of our list view.
+//            Text(language, modifier = Modifier.padding(15.dp))
+//            // on below line we are specifying
+//            // divider for each list item
+//            Divider()
+//        }
+//    }
+//}
+
+
+    @Composable
+    fun MyApp(modifier: Modifier = Modifier) {
+        val navController = rememberNavController()
+
+        Surface(modifier = modifier.fillMaxSize(), color = (Color(0xFF00C2FF))) {
+            NavHost(
+                navController = navController,
+                startDestination = "OnboardingScreen"
+
+            ) { // otherwise show the main navigation graph
                 composable("OnboardingScreen") {
-                    OnboardingScreen(onContinueClicked = { navController.navigate("login") })
+                    OnboardingScreen(onContinueClicked = { navController.navigate("login")
+
+                                                         },
+                        registerClicked = { navController.navigate("register") })
                 }
                 composable("login") {
                     Logins(loginSuccess = { navController.navigate("mainMenu") })
                 }
+                composable("register"){
+                    Registers(registerSuccess = { navController.navigate("mainMenu") })
+                }
                 composable("mainMenu") {
-                    MainMenu(logout = { navController.navigate("login") })
+                    MainMenu(
+                        logout = { navController.navigate("OnboardingScreen") },
+                        activeDevicesClicked = { navController.navigate("activeDevices") },
+                        addDevicesClicked = { navController.navigate("addDevices") },
+                        historyClicked = { navController.navigate("historys") },
+                        locationClicked = { navController.navigate("locations") })
+                }
+                composable("activeDevices") {
+                    activeDevice(backButton = { navController.navigate("mainMenu") })
+                }
+                composable("addDevices") {
+                    addDevices(backButton = { navController.navigate("mainMenu") })
+                }
+                composable("historys") {
+                    history(backButton = { navController.navigate("mainMenu") })
+                }
+                composable("locations") {
+                    locations(backButton = { navController.navigate("mainMenu") })
                 }
             }
         }
     }
-}
+
+
 @Composable
-fun OnboardingScreen(
-    onContinueClicked: () -> Unit,
-    modifier: Modifier = Modifier
-) {
+fun AnimatedShapeTouch(logout: () -> Unit) {
 
-    Column(modifier = modifier.fillMaxSize(), verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally) {
-        Text(
-            text="Aqua Guardian",
-            modifier = Modifier.padding(top = 30.dp),
-            fontSize = 50.sp,
-            fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
-            color = Color.White,
-            fontFamily = FontFamily.Cursive
-        )
+    val interactionSource = remember { MutableInteractionSource() }
+    val isPressed = interactionSource.collectIsPressedAsState()
+    val cornerRadius by animateDpAsState(targetValue = if (isPressed.value) 10.dp else 50.dp)
+    var buttonClicked by remember { mutableStateOf(false) }
+        Box(
 
-    }
-    Column(
-        modifier = modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Image(
-            painter = painterResource(id = R.drawable.ic_launcher_foreground),
-            contentDescription = "Aqua Guardian Logo",
             modifier = Modifier
-                .padding(bottom = 40.dp)
-                .size(400.dp)
-
-        )
-        Button(
-            modifier = Modifier.padding(top = 40.dp),
-            onClick = onContinueClicked
-        ) {
-             Text(text = "Login",
-                fontSize = 50.sp,
-                fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
-                fontFamily = FontFamily.Cursive)
-
-        }
-        Button(
-            modifier = Modifier.padding(vertical = 4.dp),
-            onClick = onContinueClicked
-        ) {
-            Text(text ="Register",
-                fontSize = 30.sp,
-                fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
-                fontFamily = FontFamily.Cursive
-            )
-        }
-    }
-    Column(modifier = modifier.fillMaxSize(), verticalArrangement = Arrangement.Bottom,
-        horizontalAlignment = Alignment.CenterHorizontally) {
-        Text(
-            text="Guarding Your Hydration",
-            modifier = Modifier.padding(bottom = 60.dp),
-            fontSize = 30.sp,
-            fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
-            color = Color.White,
-            fontFamily = FontFamily.Cursive
-        )
-    }
-}
-
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun PasswordTextField() {
-    var password by rememberSaveable { mutableStateOf("") }
-
-    TextField(
-        value = password,
-        onValueChange = { password = it },
-        label = { Text("Enter password") },
-        visualTransformation = PasswordVisualTransformation(),
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
-    )
-}
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun loginTextBox() {
-    var text by remember { mutableStateOf("") }
-
-    TextField(
-        value = text,
-        onValueChange = { text = it },
-        label = { Text("Username") },
-    )
-}
-
-@Composable
-fun MainMenu(
-    logout: () -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    Column(
-        modifier = modifier.fillMaxSize(), verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = "Aqua Guardian",
-            modifier = Modifier.padding(top = 30.dp),
-            fontSize = 50.sp,
-            fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
-            color = Color.White,
-            fontFamily = FontFamily.Cursive
-        )
-    }
-    Column( modifier = modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally)
-    {
-        Button(
-            modifier = Modifier.padding(top = 40.dp).fillMaxWidth(),
-            onClick = {}
-        ) {
-            Text(text = "Active Devices",
-                fontSize = 50.sp,
-                fontFamily = FontFamily.Serif)
-
-        }
-        Button(
-            modifier = Modifier.padding(top = 40.dp).fillMaxWidth(),
-            onClick = {}
-        ) {
-            Text(text = "Add Device",
-                fontSize = 50.sp,
-                fontFamily = FontFamily.Serif)
-
-        }
-        Button(
-            modifier = Modifier.padding(top = 40.dp).fillMaxWidth(),
-            onClick = {}
-        ) {
-            Text(text = "Location",
-                fontSize = 50.sp,
-                fontFamily = FontFamily.Serif)
-
-        }
-        Button(
-            onClick = { logout() },
-            modifier = Modifier.padding(top = 120.dp)
-        ) {
-            Text(text = "Logout",
-                fontSize = 50.sp,
-                fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
-                fontFamily = FontFamily.Cursive)
-
-        }
-    }
-}
-
-@Composable
-fun Logins(
-    loginSuccess: () -> Unit,
-    modifier: Modifier = Modifier,
-
-) {
-    Column(
-        modifier = modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = "Aqua Guardian",
-            modifier = Modifier.padding(top = 30.dp),
-            fontSize = 50.sp,
-            fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
-            color = Color.White,
-            fontFamily = FontFamily.Cursive
-        )
-        Image(
-            painter = painterResource(id = R.drawable.ic_launcher_foreground),
-            contentDescription = "Aqua Guardian Logo",
-            modifier = Modifier
-                .padding(top = 40.dp)
-                .size(200.dp)
-
-        )
-
-        loginTextBox()
-        Spacer(modifier = Modifier.size(10.dp))
-        PasswordTextField()
-        Button(
-            modifier = Modifier.padding(top = 20.dp),
-            onClick = { loginSuccess() }
+                .background(color = Color.Red, RoundedCornerShape(cornerRadius))
+                .size(100.dp)
+                .clip(RoundedCornerShape(cornerRadius))
+                .clickable(
+                    interactionSource = interactionSource,
+                    indication = rememberRipple()
+                ){
+                    buttonClicked = true
+                }
+                .padding(horizontal = 10.dp),
+            contentAlignment = Alignment.Center
         ) {
             Text(
-                text = "Login",
-                fontSize = 40.sp,
+                text = "Logout",
+                fontSize = 30.sp,
                 fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+                color = Color.White,
                 fontFamily = FontFamily.Cursive
             )
         }
+
+    LaunchedEffect(buttonClicked) {
+        if (buttonClicked) {
+            delay(1000)
+            logout()
+            buttonClicked = false
+        }
     }
 }
+    @OptIn(ExperimentalMaterial3Api::class)
+    @Composable
+    fun PasswordTextField( password : String, onPasswordChange : (String) -> Unit) {
+        TextField(
+            modifier = Modifier.height(50.dp),
+            value = password,
+            onValueChange = { onPasswordChange(it) },
+                label = { Text("Enter password") },
+                visualTransformation = PasswordVisualTransformation(),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password))
+    }
 
-
-@Preview(showBackground = true, widthDp = 320, heightDp = 320)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun OnboardingPreview() {
-    AquaGuardianAppTheme {
-        OnboardingScreen(onContinueClicked = {})
-    }
+fun LoginTextBox( username : String, onLoginChange : (String) -> Unit) {
+    TextField(
+        modifier = Modifier.height(50.dp),
+        value = username,
+        onValueChange = { onLoginChange(it) },
+        label = { Text("Enter Username") },
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text))
 }
 
-@Preview(showBackground = true, widthDp = 320)
-@Composable
-fun DefaultPreview() {
-    AquaGuardianAppTheme {
-        Logins(loginSuccess = {})
+    @OptIn(ExperimentalMaterial3Api::class)
+    @Composable
+    fun ConfirmPasswordTextField( confirmpassword : String, onConfirmPasswordChange : (String) -> Unit) {
+        TextField(
+            modifier = Modifier
+                .height(50.dp),
+            value = confirmpassword,
+            onValueChange = { onConfirmPasswordChange (it) },
+            label = { Text("Confirm password") },
+            visualTransformation = PasswordVisualTransformation(),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
+        )
     }
-}
+    @OptIn(ExperimentalMaterial3Api::class)
+    @Composable
+    fun EmailTextBox(email : String, onEmailChange : (String) -> Unit) {
+        TextField(
+            modifier = Modifier.height(50.dp),
+            value = email,
+            onValueChange = { onEmailChange(it) },
+            label = { Text("Enter Email") },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text))
+    }
+    @Preview
+    @Composable
+    fun MyAppPreview() {
+        AquaGuardianAppTheme {
+            MyApp(Modifier.fillMaxSize())
+        }
+    }
 
-@Preview
-@Composable
-fun MyAppPreview() {
-    AquaGuardianAppTheme {
-        MyApp(Modifier.fillMaxSize())
-    }
-}
-
-@Preview
-@Composable
-fun MainMenuPreview() {
-    AquaGuardianAppTheme {
-        MainMenu(logout = {})
-    }
-}

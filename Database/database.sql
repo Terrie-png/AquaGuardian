@@ -25,6 +25,48 @@ CREATE TABLE Users (
     role ENUM('admin', 'user') NOT NULL
 );
 
+CREATE TABLE Register(
+    register_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+);
+
+CREATE TABLE Login(
+    login_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+);
+
+
+CREATE TABLE Notifications(
+    notification_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    sensor_id INT NOT NULL,
+    VARCHAR(255) NOT NULL
+    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    FOREIGN KEY (sensor_id) REFERENCES Sensors(sensor_id)
+);
+
+CREATE TABLE SensorThresholds(
+    threshold_id INT AUTO_INCREMENT PRIMARY KEY,
+    sensor_id INT NOT NULL,
+    min_value FLOAT NOT NULL,
+    max_value FLOAT NOT NULL,
+    FOREIGN KEY (sensor_id) REFERENCES Sensors(sensor_id)
+);
+
+
+
+
+-- CREATE TABLE SensorDataHistory(
+--     data_id INT AUTO_INCREMENT PRIMARY KEY,
+--     sensor_id INT,
+--     timestamp DATETIME NOT NULL,
+--     value FLOAT NOT NULL,
+--     FOREIGN KEY (sensor_id) REFERENCES Sensors(sensor_id)
+-- );
+
+
 
 -- Sample data for the "Sensors" table
 INSERT INTO Sensors (sensor_id, sensor_name, location)

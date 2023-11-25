@@ -69,12 +69,10 @@ class RegisterActivity : AppCompatActivity() {
                     val firebaseUser = it.result?.user
                     val userUId = firebaseUser?.uid
                     val newUser = User(username, name, email, phoneNumber, address, userUId)
-
                     retrofit.registerUser(newUser).enqueue(
-                        object : Callback<RegistrationResponse> {
-                            override fun onResponse(
-                                call: Call<RegistrationResponse>,
-                                response: Response<RegistrationResponse>
+                        object : Callback<RegistrationResponse> { override fun onResponse(
+                            call: Call<RegistrationResponse>,
+                            response: Response<RegistrationResponse>
                             ) {
                                 Log.d("TAG", "${response.body()?.success.toString()}")
                                 Toast.makeText(

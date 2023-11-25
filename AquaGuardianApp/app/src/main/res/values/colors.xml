@@ -9,4 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="aquablue">#00c2ff</color>
     <color name="darkblue">#0075ff</color>
+    <color name="green">#0dd200</color>
+    <color name="red">#f00001</color>
+
 </resources>

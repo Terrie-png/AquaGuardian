@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <!-- Include the internet permission here -->
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -14,8 +13,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AquaGuardianApp"
-        tools:targetApi="31"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+        <activity
+            android:name=".WaterQualityActivity"
+            android:exported="false" />
+
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@drawable/button_background" />

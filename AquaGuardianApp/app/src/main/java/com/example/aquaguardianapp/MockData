@@ -1,0 +1,113 @@
+{
+    "User":[
+        {
+            "username":"Jdoe",
+            "name": "John Doe",
+            "email": "john.doe@gmail.com",
+            "phone": "123-456-7890",
+            "address": "1234 Main St",
+            "userUID" : "1234567890"
+            },
+        {
+            "username":"BBobby",
+            "name": "Bob Bobright",
+            "email": "Bobb@gmail.com",
+            "phone": "098-765-4321",
+            "address": "42 Bumble St",
+            "userUID" : "0987654321"
+            },
+        {
+            "username":"CCarol",
+            "name": "Carol Carolson",
+            "email": "",
+            "phone": "555-555-5555",
+            "address": "19b Grove Rd",
+            "userUID" : "1230984567"
+            },
+        {
+            "username":"DDave",
+            "name": "Dave Davidson",
+            "email": "DaveyD@gmail.com",
+            "phone": "111-111-1111",
+            "address": "1 Main St",
+            "userUID" : "1111111111"
+            }
+        ]
+}
+
+
+
+{
+"RegistrationResponse":[
+        {
+            "success":true,
+            "username":"DDave",
+            "userUID" : "1111111111",
+            "message": "Registration Successful"
+            },
+        {
+            "success":false,
+            "username":"CCarol",
+            "userUID" : "1230984567",
+            "message": "Registration Failed"
+            },
+        {
+            "success":true,
+            "username":"BBobby",
+            "userUID" : "0987654321",
+            "message": "Registration Successful"
+            },
+            {
+            "success":true,
+            "username":"Jdoe",
+            "userUID" : "1234567890",
+            "message": "Registration Successful"
+            }
+        ]
+}
+
+{
+"Registration":[
+        {
+            "success":true,
+             "message": "Registration Successful",
+                  "username":"DDave",
+                       "name": "Dave Davidson",
+                       "email": "DaveyD@gmail.com",
+                       "phone": "111-111-1111",
+                       "address": "1 Main St",
+                       "userUID" : "1111111111"
+
+            },
+        {
+            "success":false,
+            "message": "Registration Failed",
+                "username":"CCarol",
+                      "name": "Carol Carolson",
+                      "email": "",
+                      "phone": "555-555-5555",
+                      "address": "19b Grove Rd",
+                      "userUID" : "1230984567"
+            },
+        {
+            "success":true,
+            "message": "Registration Successful",
+              "username":"BBobby",
+                   "name": "Bob Bobright",
+                   "email": "Bobb@gmail.com",
+                   "phone": "098-765-4321",
+                   "address": "42 Bumble St",
+                   "userUID" : "0987654321"
+            },
+            {
+            "success":true,
+            "message": "Registration Successful",
+             "username":"Jdoe",
+                "name": "John Doe",
+                "email": "john.doe@gmail.com",
+                "phone": "123-456-7890",
+                "address": "1234 Main St",
+                "userUID" : "1234567890"
+            }
+        ]
+}

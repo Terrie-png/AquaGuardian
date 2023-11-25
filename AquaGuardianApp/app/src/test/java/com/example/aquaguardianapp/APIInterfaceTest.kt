@@ -1,6 +1,5 @@
 package com.example.aquaguardianapp
 
-import Helper
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
@@ -52,19 +51,19 @@ class APIInterfaceTest {
     @Test(timeout = 10000) // Timeout of 10 seconds
     fun testRegisterUser_returnSuccessResponse() {
         try {
-            val content = Helper.readFileResource("C:/Users/rathn/AndroidStudioProjects/AquaGuardian/AquaGuardianApp/app/src/test/resources/response.json")
+            val content = Helper.readFileResource("/response.json")
             val mockResponse = MockResponse()
             mockResponse.setResponseCode(200)
             mockResponse.setBody(content)
             mockWebServer.enqueue(mockResponse)
 
             val mockUser = User(
-                username = "testuser",
-                name = "Test User",
-                email = "test@example.com",
+                username = "john123",
+                name = "John Doe",
+                email = "Doe@gmail.com",
                 phone = "1234567890",
                 address = "123 Test Street",
-                userUID = null
+                userUID = "uid12345"
             )
 
             val response = apiInterface.registerUser(mockUser).execute()

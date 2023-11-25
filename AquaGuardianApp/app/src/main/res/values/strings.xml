@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AquaGuardianApp</string>
+    <string name="water_quality_good">Your water is good to drink!</string>
+    <string name="water_quality_bad">Your water is not good to drink!</string>
 </resources>

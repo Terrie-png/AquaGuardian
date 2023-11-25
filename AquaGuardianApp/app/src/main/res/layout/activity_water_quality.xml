@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".DashboardActivity">
+
+    <RelativeLayout
+        android:id="@+id/header_title"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/aquablue">
+
+        <ImageView
+            android:id="@+id/ivLogo"
+            android:layout_width="100dp"
+            android:layout_height="52dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="10dp"
+            android:padding="2dp"
+            android:src="@drawable/mainlogo" />
+
+        <TextView
+            android:id="@+id/tvLogo"
+            android:layout_width="183dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="130dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/kaushan_script"
+            android:padding="2dp"
+            android:text="Aqua Guardian"
+            android:textColor="@color/white"
+            android:textSize="29sp" />
+    </RelativeLayout>
+
+    <!-- Active Devices Button -->
+    <LinearLayout
+        android:id="@+id/btActiveDevices"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="9dp"
+        android:elevation="8dp"
+        android:stateListAnimator="@null"
+        android:background="@drawable/button_background"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <ImageView
+            android:layout_width="69dp"
+            android:layout_height="69dp"
+            android:src="@drawable/phone" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bob's Kitchen"
+                android:textAppearance="?attr/textAppearanceButton"
+                android:textColor="@color/darkblue"
+                android:textSize="32dp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imgEmoji"
+        android:layout_width="322dp"
+        android:layout_height="298dp"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/happyface" />
+
+    <TextView
+        android:id="@+id/txtWaterQualityMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imgEmoji"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/green"
+        android:text="@string/water_quality_good"
+    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/btnCheckWaterQuality"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:background="@drawable/roundedbutton"
+        android:fontFamily="@font/kaushan_script"
+        android:text="Check Water"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+</LinearLayout>
+

@@ -75,23 +75,29 @@ class RegisterActivity : AppCompatActivity() {
                             response: Response<RegistrationResponse>
                             ) {
                                 Log.d("TAG", "${response.body()?.success.toString()}")
-                                Toast.makeText(
-                                    this@RegisterActivity,
-                                    "Registration successful.",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                                // Only navigate to DashboardActivity if the registration is successful
-                                if (response.isSuccessful) {
-                                    //Create an Intent to start the DashboardActivity
-                                    val intent = Intent(
+                            if (response.isSuccessful) {
+                                val isRegistered= response.body()?.success
+                                if (isRegistered != null) {
+                                    Toast.makeText(
                                         this@RegisterActivity,
-                                        DashboardActivity::class.java
-                                    )
-                                    startActivity(intent)
-                                    finish()
+                                        "Registration successful.",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                    // Only navigate to DashboardActivity if the registration is successful
+                                    if (response.isSuccessful) {
+                                        //Create an Intent to start the DashboardActivity
+                                        val intent = Intent(
+                                            this@RegisterActivity,
+                                            DashboardActivity::class.java
+                                        )
+                                        startActivity(intent)
+                                        finish()
+                                    }
                                 }
+                            } else {
+                                Toast.makeText(this@RegisterActivity,"No user data received", Toast.LENGTH_SHORT).show()
                             }
-
+                            }
                             override fun onFailure(
                                 call: Call<RegistrationResponse>,
                                 t: Throwable

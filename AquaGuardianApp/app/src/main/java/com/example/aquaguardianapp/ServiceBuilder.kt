@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 
 object ServiceBuilder {
-    private const val baseUrl = "https://reqres.in/"
+    private const val baseUrl = "http://demo1554907.mockable.io/"
 
     private val client = OkHttpClient.Builder().build()
 

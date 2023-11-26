@@ -69,7 +69,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Bob's Kitchen"
+                android:text="Kitchen Device"
                 android:textAppearance="?attr/textAppearanceButton"
                 android:textColor="@color/darkblue"
                 android:textSize="32dp"
@@ -81,11 +81,11 @@
 
     <ImageView
         android:id="@+id/imgEmoji"
-        android:layout_width="322dp"
-        android:layout_height="298dp"
+        android:layout_width="match_parent"
+        android:layout_height="353dp"
         android:layout_centerInParent="true"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/happyface" />
+        android:src="@drawable/wqplaceholder" />
 
     <TextView
         android:id="@+id/txtWaterQualityMessage"
@@ -94,8 +94,9 @@
         android:layout_below="@id/imgEmoji"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
-        android:textColor="@color/green"
-        android:text="@string/water_quality_good"
+        android:fontFamily="@font/kaushan_script"
+        android:textColor="@color/darkblue"
+        android:text="Click the below button!"
     android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Button

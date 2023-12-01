@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -36,7 +37,7 @@ data class Message(
     val timestamp: String,
     val date: String,
     val longitude: String,
-    val latitude: String
+//    val latitude: String
 )
 
 
@@ -44,25 +45,27 @@ data class Message(
 @Composable
 fun MesageList(messages: List<Message>) {
     LazyColumn {
-        items(messages) { message ->
-            MessageRow(message)
+        itemsIndexed(messages) {index, message ->
+            MessageRow(message,index)
 
         }
     }
 }
 
 @Composable
-private fun MessageRow(message: Message) {
+private fun MessageRow(message: Message,index: Int) {
+    val backgroundColor = if (index % 2 == 0) Color(0xFF039AC9) else Color(0xFF00C2FF)
+    val qualityColor = if (message.message == " Clean ") Color(0xFF00FF00) else Color(0xFFFF0000)
     Row(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth().background(backgroundColor)
     ) {
         Spacer(modifier = Modifier.height(30.dp))
         Text(text = message.device)
-        Text(text = message.message, color = Color.Red)
-        Text(text = message.timestamp, color = Color.Gray)
-        Text(text = message.date, color = Color.Blue)
-        Text(text = message.longitude, color = Color.Green)
-        Text(text = message.latitude, overflow = TextOverflow.Clip)
+        Text(text = message.message, color = qualityColor)
+        Text(text = message.timestamp, color = Color.White)
+        Text(text = message.date, color = Color.LightGray)
+        Text(text = message.longitude, color = Color.White)
+//        Text(text = message.latitude, overflow = TextOverflow.Clip)
 
     }
 }
@@ -104,7 +107,7 @@ fun history(
                             "12:43",
                             "23/11/2023",
                             "-90.33123",
-                            "38.7545"
+//                            "38.7545"
                         ),
                         Message(
                             " Clean ",
@@ -112,7 +115,7 @@ fun history(
                             "08:43",
                             "23/11/2023",
                             "-91.22123",
-                            "23.1634"
+//                            "23.1634"
                         ),
                         Message(
                             " Dirty ",
@@ -120,7 +123,7 @@ fun history(
                             "12:46",
                             "23/11/2023",
                             "-92.78643",
-                            "41.1145"
+//                            "41.1145"
                         ),
                         Message(
                             " Clean ",
@@ -128,7 +131,7 @@ fun history(
                             "12:06",
                             "24/11/2023",
                             "-90.33123",
-                            "38.7545"
+//                            "38.7545"
                         ),
                         Message(
                             " Clean ",
@@ -136,7 +139,7 @@ fun history(
                             "18:55",
                             "24/11/2023",
                             "-91.22123",
-                            "23.1634"
+//                            "23.1634"
                         ),
                         Message(
                             " Clean ",
@@ -144,7 +147,7 @@ fun history(
                             "22:35",
                             "24/11/2023",
                             "-92.78643",
-                            "41.1145"
+//                            "41.1145"
                         ),
                         Message(
                             " Clean ",
@@ -152,7 +155,7 @@ fun history(
                             "03:56",
                             "25/11/2023",
                             "-90.33123",
-                            "38.7545"
+//                              "38.7545"
                         ),
                         Message(
                             " Clean ",
@@ -160,7 +163,7 @@ fun history(
                             "03:12",
                             "25/11/2023",
                             "-91.22123",
-                            "23.1634"
+                            //                             "23.1634"
                         ),
                         Message(
                             " Clean ",
@@ -168,7 +171,7 @@ fun history(
                             "04:44",
                             "25/11/2023",
                             "-92.78643",
-                            "41.1145"
+                            //                             "41.1145"
                         ),
                         Message(
                             " Clean ",
@@ -176,7 +179,7 @@ fun history(
                             "12:43",
                             "23/11/2023",
                             "-90.33123",
-                            "38.7545"
+                            //                             "38.7545"
                         ),
                         Message(
                             " Clean ",
@@ -184,7 +187,7 @@ fun history(
                             "08:43",
                             "23/11/2023",
                             "-91.22123",
-                            "23.1634"
+                            //                            "23.1634"
                         ),
                         Message(
                             " Dirty ",
@@ -192,7 +195,7 @@ fun history(
                             "12:46",
                             "23/11/2023",
                             "-92.78643",
-                            "41.1145"
+                            //                            "41.1145"
                         ),
                         Message(
                             " Clean ",
@@ -200,7 +203,7 @@ fun history(
                             "12:06",
                             "24/11/2023",
                             "-90.33123",
-                            "38.7545"
+                            //                            "38.7545"
                         ),
                         Message(
                             " Clean ",
@@ -208,7 +211,7 @@ fun history(
                             "18:55",
                             "24/11/2023",
                             "-91.22123",
-                            "23.1634"
+                            //                           "23.1634"
                         ),
                         Message(
                             " Clean ",
@@ -216,7 +219,7 @@ fun history(
                             "22:35",
                             "24/11/2023",
                             "-92.78643",
-                            "41.1145"
+                            //                            "41.1145"
                         ),
                         Message(
                             " Clean ",
@@ -224,7 +227,7 @@ fun history(
                             "03:56",
                             "25/11/2023",
                             "-90.33123",
-                            "38.7545"
+                            //                          "38.7545"
                         ),
                         Message(
                             " Clean ",
@@ -232,7 +235,7 @@ fun history(
                             "03:12",
                             "25/11/2023",
                             "-91.22123",
-                            "23.1634"
+                            //                           "23.1634"
                         ),
                         Message(
                             " Clean ",
@@ -240,7 +243,7 @@ fun history(
                             "04:44",
                             "25/11/2023",
                             "-92.78643",
-                            "41.1145"
+                            //                          "41.1145"
                         ),
                         Message(
                             " Clean ",
@@ -248,7 +251,7 @@ fun history(
                             "12:43",
                             "23/11/2023",
                             "-90.33123",
-                            "38.7545"
+                            //                           "38.7545"
                         ),
                         Message(
                             " Clean ",
@@ -256,7 +259,7 @@ fun history(
                             "08:43",
                             "23/11/2023",
                             "-91.22123",
-                            "23.1634"
+                            //                           "23.1634"
                         ),
                         Message(
                             " Dirty ",
@@ -264,7 +267,7 @@ fun history(
                             "12:46",
                             "23/11/2023",
                             "-92.78643",
-                            "41.1145"
+                            //                           "41.1145"
                         ),
                         Message(
                             " Clean ",
@@ -272,7 +275,7 @@ fun history(
                             "12:06",
                             "24/11/2023",
                             "-90.33123",
-                            "38.7545"
+                            //                             "38.7545"
                         ),
                         Message(
                             " Clean ",
@@ -280,7 +283,7 @@ fun history(
                             "18:55",
                             "24/11/2023",
                             "-91.22123",
-                            "23.1634"
+                            //                           "23.1634"
                         ),
                         Message(
                             " Clean ",
@@ -288,7 +291,7 @@ fun history(
                             "22:35",
                             "24/11/2023",
                             "-92.78643",
-                            "41.1145"
+                            //                          "41.1145"
                         ),
                         Message(
                             " Clean ",
@@ -296,7 +299,7 @@ fun history(
                             "03:56",
                             "25/11/2023",
                             "-90.33123",
-                            "38.7545"
+                            //                           "38.7545"
                         ),
                         Message(
                             " Clean ",
@@ -304,7 +307,7 @@ fun history(
                             "03:12",
                             "25/11/2023",
                             "-91.22123",
-                            "23.1634"
+                            //       "23.1634"
                         ),
                         Message(
                             " Clean ",
@@ -312,7 +315,7 @@ fun history(
                             "04:44",
                             "25/11/2023",
                             "-92.78643",
-                            "41.1145"
+                            //        "41.1145"
                         ),
                         Message(
                             " Clean ",
@@ -320,7 +323,7 @@ fun history(
                             "12:43",
                             "23/11/2023",
                             "-90.33123",
-                            "38.7545"
+                            //        "38.7545"
                         ),
                         Message(
                             " Clean ",
@@ -328,7 +331,7 @@ fun history(
                             "08:43",
                             "23/11/2023",
                             "-91.22123",
-                            "23.1634"
+                            //        "23.1634"
                         ),
                         Message(
                             " Dirty ",
@@ -336,7 +339,7 @@ fun history(
                             "12:46",
                             "23/11/2023",
                             "-92.78643",
-                            "41.1145"
+                            //         "41.1145"
                         ),
                         Message(
                             " Clean ",
@@ -344,7 +347,7 @@ fun history(
                             "12:06",
                             "24/11/2023",
                             "-90.33123",
-                            "38.7545"
+                            //        "38.7545"
                         ),
                         Message(
                             " Clean ",
@@ -352,7 +355,7 @@ fun history(
                             "18:55",
                             "24/11/2023",
                             "-91.22123",
-                            "23.1634"
+                            //       "23.1634"
                         ),
                         Message(
                             " Clean ",
@@ -360,249 +363,8 @@ fun history(
                             "22:35",
                             "24/11/2023",
                             "-92.78643",
-                            "41.1145"
+                            //       "41.1145"
                         ),
-                        Message(
-                            " Clean ",
-                            "Device 1",
-                            "03:56",
-                            "25/11/2023",
-                            "-90.33123",
-                            "38.7545"
-                        ),
-                        Message(
-                            " Clean ",
-                            "Device 2",
-                            "03:12",
-                            "25/11/2023",
-                            "-91.22123",
-                            "23.1634"
-                        ),
-                        Message(
-                            " Clean ",
-                            "Device 3",
-                            "04:44",
-                            "25/11/2023",
-                            "-92.78643",
-                            "41.1145"
-                        ),
-                        Message(
-                            " Clean ",
-                            "Device 1",
-                            "12:43",
-                            "23/11/2023",
-                            "-90.33123",
-                            "38.7545"
-                        ),
-                        Message(
-                            " Clean ",
-                            "Device 2",
-                            "08:43",
-                            "23/11/2023",
-                            "-91.22123",
-                            "23.1634"
-                        ),
-                        Message(
-                            " Dirty ",
-                            "Device 3",
-                            "12:46",
-                            "23/11/2023",
-                            "-92.78643",
-                            "41.1145"
-                        ),
-                        Message(
-                            " Clean ",
-                            "Device 1",
-                            "12:06",
-                            "24/11/2023",
-                            "-90.33123",
-                            "38.7545"
-                        ),
-                        Message(
-                            " Clean ",
-                            "Device 2",
-                            "18:55",
-                            "24/11/2023",
-                            "-91.22123",
-                            "23.1634"
-                        ),
-                        Message(
-                            " Clean ",
-                            "Device 3",
-                            "22:35",
-                            "24/11/2023",
-                            "-92.78643",
-                            "41.1145"
-                        ),
-                        Message(
-                            " Clean ",
-                            "Device 1",
-                            "03:56",
-                            "25/11/2023",
-                            "-90.33123",
-                            "38.7545"
-                        ),
-                        Message(
-                            " Clean ",
-                            "Device 2",
-                            "03:12",
-                            "25/11/2023",
-                            "-91.22123",
-                            "23.1634"
-                        ),
-                        Message(
-                            " Clean ",
-                            "Device 3",
-                            "04:44",
-                            "25/11/2023",
-                            "-92.78643",
-                            "41.1145"
-                        ),
-                        Message(
-                            " Clean ",
-                            "Device 1",
-                            "12:43",
-                            "23/11/2023",
-                            "-90.33123",
-                            "38.7545"
-                        ),
-                        Message(
-                            " Clean ",
-                            "Device 2",
-                            "08:43",
-                            "23/11/2023",
-                            "-91.22123",
-                            "23.1634"
-                        ),
-                        Message(
-                            " Dirty ",
-                            "Device 3",
-                            "12:46",
-                            "23/11/2023",
-                            "-92.78643",
-                            "41.1145"
-                        ),
-                        Message(
-                            " Clean ",
-                            "Device 1",
-                            "12:06",
-                            "24/11/2023",
-                            "-90.33123",
-                            "38.7545"
-                        ),
-                        Message(
-                            " Clean ",
-                            "Device 2",
-                            "18:55",
-                            "24/11/2023",
-                            "-91.22123",
-                            "23.1634"
-                        ),
-                        Message(
-                            " Clean ",
-                            "Device 3",
-                            "22:35",
-                            "24/11/2023",
-                            "-92.78643",
-                            "41.1145"
-                        ),
-                        Message(
-                            " Clean ",
-                            "Device 1",
-                            "03:56",
-                            "25/11/2023",
-                            "-90.33123",
-                            "38.7545"
-                        ),
-                        Message(
-                            " Clean ",
-                            "Device 2",
-                            "03:12",
-                            "25/11/2023",
-                            "-91.22123",
-                            "23.1634"
-                        ),
-                        Message(
-                            " Clean ",
-                            "Device 3",
-                            "04:44",
-                            "25/11/2023",
-                            "-92.78643",
-                            "41.1145"
-                        ),
-                        Message(
-                            " Clean ",
-                            "Device 1",
-                            "12:43",
-                            "23/11/2023",
-                            "-90.33123",
-                            "38.7545"
-                        ),
-                        Message(
-                            " Clean ",
-                            "Device 2",
-                            "08:43",
-                            "23/11/2023",
-                            "-91.22123",
-                            "23.1634"
-                        ),
-                        Message(
-                            " Dirty ",
-                            "Device 3",
-                            "12:46",
-                            "23/11/2023",
-                            "-92.78643",
-                            "41.1145"
-                        ),
-                        Message(
-                            " Clean ",
-                            "Device 1",
-                            "12:06",
-                            "24/11/2023",
-                            "-90.33123",
-                            "38.7545"
-                        ),
-                        Message(
-                            " Clean ",
-                            "Device 2",
-                            "18:55",
-                            "24/11/2023",
-                            "-91.22123",
-                            "23.1634"
-                        ),
-                        Message(
-                            " Clean ",
-                            "Device 3",
-                            "22:35",
-                            "24/11/2023",
-                            "-92.78643",
-                            "41.1145"
-                        ),
-                        Message(
-                            " Clean ",
-                            "Device 1",
-                            "03:56",
-                            "25/11/2023",
-                            "-90.33123",
-                            "38.7545"
-                        ),
-                        Message(
-                            " Clean ",
-                            "Device 2",
-                            "03:12",
-                            "25/11/2023",
-                            "-91.22123",
-                            "23.1634"
-                        ),
-                        Message(
-                            " Clean ",
-                            "Device 3",
-                            "04:44",
-                            "25/11/2023",
-                            "-92.78643",
-                            "41.1145"
-                        ),
-
                         )
                 )
             }

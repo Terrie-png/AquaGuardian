@@ -55,7 +55,11 @@ dependencies {
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.5.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
-
+    implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:core:11.1.0")
+    implementation ("com.google.android.exoplayer:exoplayer-core:2.19.1")
+    implementation ("com.google.android.exoplayer:exoplayer-dash:2.19.1")
+    implementation ("com.google.android.exoplayer:exoplayer-ui:2.19.1")
+    implementation("androidx.compose.material:material:1.0.5")
     implementation("io.jsonwebtoken:jjwt-impl:0.12.0")
     implementation("io.jsonwebtoken:jjwt-jackson:0.12.0")
     implementation("androidx.core:core-ktx:1.9.0")
@@ -75,4 +79,7 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
     implementation("androidx.navigation:navigation-compose:2.5.3")
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.1")
+
+    //exoplayer
+    implementation("com.google.android.exoplayer:exoplayer:2.18.0")
 }

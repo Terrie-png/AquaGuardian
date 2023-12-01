@@ -44,11 +44,11 @@ fun OnboardingScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
-            painter = painterResource(id = R.drawable.ic_launcher_foreground),
+            painter = painterResource(id = R.drawable.aglogo),
             contentDescription = "Aqua Guardian Logo",
             modifier = Modifier
                 .padding(bottom = 40.dp)
-                .size(400.dp)
+                .size(300.dp)
 
         )
 

@@ -16,6 +16,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
@@ -44,7 +45,7 @@ fun MainMenu(
                         painter = painterResource(id = R.drawable.aglogo),
                         contentDescription = "Logo",
                         modifier = Modifier.padding(start = 5.dp)
-                            .size(100.dp)
+                            .size(100.dp).shadow(10.dp)
                     )
                 },
                 title = {
@@ -63,7 +64,7 @@ fun MainMenu(
             ) {
             Button(
                 modifier = Modifier
-                    .padding(top = 40.dp)
+                    .padding(top = 40.dp).shadow(10.dp)
                     .fillMaxWidth(),
                 onClick = { activeDevicesClicked() }
             ) {
@@ -76,7 +77,7 @@ fun MainMenu(
             }
             Button(
                 modifier = Modifier
-                    .padding(top = 40.dp)
+                    .padding(top = 40.dp).shadow(10.dp)
                     .fillMaxWidth(),
                 onClick = { addDevicesClicked() }
             ) {
@@ -89,7 +90,7 @@ fun MainMenu(
             }
             Button(
                 modifier = Modifier
-                    .padding(top = 40.dp)
+                    .padding(top = 40.dp).shadow(10.dp)
                     .fillMaxWidth(),
                 onClick = { locationClicked() }
             ) {
@@ -102,7 +103,7 @@ fun MainMenu(
             }
             Button(
                 modifier = Modifier
-                    .padding(top = 40.dp)
+                    .padding(top = 40.dp).shadow(10.dp)
                     .fillMaxWidth(),
                 onClick = { historyClicked() }
             ) {

@@ -66,7 +66,7 @@ fun OnboardingScreen(
 
         }
         Button(
-            modifier = Modifier.padding(bottom = 100.dp, top = 4.dp),
+            modifier = Modifier.padding(bottom = 100.dp, top = 10.dp),
             onClick = registerClicked
         ) {
             Text(

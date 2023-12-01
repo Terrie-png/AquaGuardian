@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -61,9 +62,7 @@ private fun MessageRow(message: Message) {
         Text(text = message.timestamp, color = Color.Gray)
         Text(text = message.date, color = Color.Blue)
         Text(text = message.longitude, color = Color.Green)
-        Text(text = message.latitude)
-        Spacer(modifier = Modifier.height(30.dp))
-
+        Text(text = message.latitude, overflow = TextOverflow.Clip)
 
     }
 }

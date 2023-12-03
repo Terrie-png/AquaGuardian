@@ -93,6 +93,13 @@ def user_logout(u_id):
         db.session.commit()
         print("User " + row.name + " logged out")   
     
+def add_auth_key(u_id, auth_key):
+    row = get_user_row_if_exists(u_id)
+    if row is not False:
+        row.authkey = auth_key
+        db.session.commit()
+        print("User " + row.name + "authkey added")
+
 def __eq__(self, other):
         if isinstance(other, User):
             return self.id == other.id

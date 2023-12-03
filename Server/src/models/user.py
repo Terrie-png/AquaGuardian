@@ -67,7 +67,14 @@ def delete_all():
         print("Failed " + str(e))
         db.session.rollback()
 
-            
+def get_user_row_if_exists(user_id):
+    get_user_row = User.query.filter_by(user_id=user_id).first()
+    if get_user_row is not None:
+        return get_user_row
+    else:
+        print("This user does not exist")
+        return False
+    
 def __eq__(self, other):
         if isinstance(other, User):
             return self.id == other.id

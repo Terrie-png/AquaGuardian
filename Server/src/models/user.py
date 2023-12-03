@@ -119,6 +119,28 @@ def view_all():
                 str(row[n].authkey) + " | " +
                 str(row[n].login))
         
+def get_all_logged_in_users():
+    row = User.query.filter_by(login=1).all()
+    online_user_record = {"user_record": []}
+    print("Logged in users: ")
+    for n in range(0, len(row)):
+        if row[n].read_access:
+            read = "checked"
+        else:
+            read = "unchecked"
+        if row[n].write_access:
+            write = "checked"
+        else:
+            write = "unchecked"
+        online_user_record["user_record"].append([row[n].u_id, row[n].name,row[n].email,row[n].password,read, write])
+        print(str(row[n].id) + " | " +
+                str(row[n].u_id) + " | " +
+                 str(row[n].name) + " | " +
+                str(row[n].email) + " | " +
+                str(row[n].password) + " | " +
+                str(row[n].authkey) + " | " +
+                str(row[n].login))
+    return online_user_record
     
         
 def __eq__(self, other):

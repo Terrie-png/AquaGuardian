@@ -4,11 +4,9 @@ from flask import jsonify
 from flask_sqlalchemy import SQLAlchemy
 
 
-db = SQLAlchemy(app)
+db = SQLAlchemy()
 
-from .__init__ import db
-
-class User(db.Model):
+class User(BaseModel):
         __tablename__ = "User"
 u_id = db.Column(db.Integer, primary_key=True)
 
@@ -58,9 +56,17 @@ def deserialize(self, data):
             self.password = data['password']
             self.role = data['role']
             
-def check_password(self, password):
-        bcrypt = Bcrypt()
-        return bcrypt.check_password_hash(self.password, password)
+
+
+def delete_all():
+    try:
+        db.session.query(User).delete()
+        db.session.commit()
+        print("Delete all")
+    except Exception as e:
+        print("Failed " + str(e))
+        db.session.rollback()
+
             
 def __eq__(self, other):
         if isinstance(other, User):

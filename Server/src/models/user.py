@@ -1,17 +1,36 @@
 from flask_bcrypt import Bcrypt
 from .base_model import BaseModel
 from flask import jsonify
+from flask_sqlalchemy import SQLAlchemy
 
-class User(BaseModel):
-    def __init__(self, id=None, name=None, email=None, password=None, role=None):
-        super().__init__()
-        self.id = id
+
+db = SQLAlchemy()
+
+class User(db.BaseModel):
+        __tablename__ = "User"
+u_id = db.Column(db.Integer, primary_key=True)
+user_id = db.Column(db.String(4096))
+name = db.Column(db.String(4096))
+email = db.Column(db.String(4096))
+password = db.Column(db.String(4096))
+authkey = db.Column(db.String(4096))
+login = db.Column(db.Integer)
+read_access = db.Column(db.Integer)
+write_access = db.Column(db.Integer)
+
+    
+def __init__(self, u_id, name, email, password,authkey, login, read_access, write_access ):
+      
+        self.u_id = u_id
         self.name = name
         self.email = email
         self.password = password
-        self.role = role
+        self.authkey = authkey
+        self.login = login
+        self.read_access = read_access
+        self.write_access = write_access
         
-    def serialize(self):
+def serialize(self):
         return jsonify({
             'id': self.id,
             'name': self.name,
@@ -20,7 +39,7 @@ class User(BaseModel):
         })
         
         
-    def deserialize(self, data):
+def deserialize(self, data):
 
         if(type(data) is not dict):
             self.id = data[0]
@@ -36,14 +55,129 @@ class User(BaseModel):
             self.password = data['password']
             self.role = data['role']
             
-    def check_password(self, password):
-        bcrypt = Bcrypt()
-        return bcrypt.check_password_hash(self.password, password)
-            
-    def __eq__(self, other):
+
+
+def delete_all():
+    try:
+        db.session.query(User).delete()
+        db.session.commit()
+        print("Delete all")
+    except Exception as e:
+        print("Failed " + str(e))
+        db.session.rollback()
+
+def get_user_row_if_exists(u_id):
+    get_user_row = User.query.filter_by(u_id=u_id).first()
+    if get_user_row is not None:
+        return get_user_row
+    else:
+        print("This user does not exist")
+        return False
+    
+  
+def add_user_and_login(u_id,name,email,password):
+    row = get_user_row_if_exists(u_id)
+    if row is not False:
+        row.login = 1
+        db.session.commit()
+    else:
+        print("Adding user " + name)
+        new_user = User(u_id, name, email, password, None, 1, 0, 0)
+        db.session.add(new_user)
+        db.session.commit()  
+        
+def user_logout(u_id):
+    row = get_user_row_if_exists(u_id)
+    if row is not False:
+        row.login = 0
+        db.session.commit()
+        print("User " + row.name + " logged out")   
+    
+def add_auth_key(u_id, auth_key):
+    row = get_user_row_if_exists(u_id)
+    if row is not False:
+        row.authkey = auth_key
+        db.session.commit()
+        print("User " + row.name + "authkey added")
+
+
+def get_auth_key(u_id):
+    row = get_user_row_if_exists(u_id)
+    if row is not False:
+        return row.authkey
+    else:
+        print("User with id: " + u_id + " doesn't exist")
+        
+def view_all():
+    row = User.query.all()
+    for n in range(0, len(row)):
+        print(str(row[n].id) + " | " +
+                row[n].name + " | " +
+                 row[n].email + " | " +
+                  row[n].password+ " | " +
+                str(row[n].u_id) + " | " +
+                str(row[n].authkey) + " | " +
+                str(row[n].login))
+        
+def get_all_logged_in_users():
+    row = User.query.filter_by(login=1).all()
+    online_user_record = {"user_record": []}
+    print("Logged in users: ")
+    for n in range(0, len(row)):
+        if row[n].read_access:
+            read = "checked"
+        else:
+            read = "unchecked"
+        if row[n].write_access:
+            write = "checked"
+        else:
+            write = "unchecked"
+        online_user_record["user_record"].append([row[n].u_id, row[n].name,row[n].email,row[n].password,read, write])
+        print(str(row[n].id) + " | " +
+                str(row[n].u_id) + " | " +
+                 str(row[n].name) + " | " +
+                str(row[n].email) + " | " +
+                str(row[n].password) + " | " +
+                str(row[n].authkey) + " | " +
+                str(row[n].login))
+    return online_user_record
+ 
+def bool_to_int(v):
+    if 'true' in str(v):
+        return 1
+    elif 'false' in str(v):
+        return 0
+    else:
+        raise ValueError
+
+
+def add_user_permission(u_id,name,email,password, read, write):
+    row = get_user_row_if_exists(u_id)
+    if row is not False:
+        row.read_access = bool_to_int(read)
+        row.write_access = bool_to_int(write)
+        db.session.commit()
+
+def get_user_access(user_id):
+    row = get_user_row_if_exists(user_id)
+    if row is not False:
+        get_user_row = User.query.filter_by(u_id=u_id).first()
+        read = get_user_row.read_access
+        if read == 1:
+            read = True
+        else:
+            read = False
+        write = get_user_row.write_access
+        if write == 1:
+            write = True
+        else:
+            write = False
+    return read, write   
+        
+def __eq__(self, other):
         if isinstance(other, User):
             return self.id == other.id
         return False
     
-    def __dir__(self):
+def __dir__(self):
         return {'id':self.id, 'name':self.name, 'email':self.email, 'password':self.password, 'role':self.role}

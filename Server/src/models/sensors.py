@@ -4,7 +4,7 @@ from flask import jsonify
 
 db = SQLAlchemy()
 
-class SensorData(BaseModel):
+class SensorData(db.BaseModel):
     
       __tablename__ = "SensorData"
 data_id = db.Column(db.Integer, primary_key=True)

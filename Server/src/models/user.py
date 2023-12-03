@@ -107,6 +107,18 @@ def get_auth_key(u_id):
         return row.authkey
     else:
         print("User with id: " + u_id + " doesn't exist")
+        
+def view_all():
+    row = User.query.all()
+    for n in range(0, len(row)):
+        print(str(row[n].id) + " | " +
+                row[n].name + " | " +
+                 row[n].email + " | " +
+                  row[n].password+ " | " +
+                str(row[n].u_id) + " | " +
+                str(row[n].authkey) + " | " +
+                str(row[n].login))
+        
     
         
 def __eq__(self, other):

@@ -75,7 +75,7 @@ def get_user_row_if_exists(u_id):
         return False
     
   
-def add_user_and_login(u_id,name,email,passwword):
+def add_user_and_login(u_id,name,email,password):
     row = get_user_row_if_exists(u_id)
     if row is not False:
         row.login = 1
@@ -100,6 +100,15 @@ def add_auth_key(u_id, auth_key):
         db.session.commit()
         print("User " + row.name + "authkey added")
 
+
+def get_auth_key(u_id):
+    row = get_user_row_if_exists(u_id)
+    if row is not False:
+        return row.authkey
+    else:
+        print("User with id: " + u_id + " doesn't exist")
+    
+        
 def __eq__(self, other):
         if isinstance(other, User):
             return self.id == other.id

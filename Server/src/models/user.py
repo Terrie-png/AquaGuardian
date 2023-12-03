@@ -85,6 +85,13 @@ def add_user_and_login(u_id,name,email,passwword):
         new_user = User(u_id, name, email, password, None, 1, 0, 0)
         db.session.add(new_user)
         db.session.commit()  
+        
+def user_logout(u_id):
+    row = get_user_row_if_exists(u_id)
+    if row is not False:
+        row.login = 0
+        db.session.commit()
+        print("User " + row.name + " logged out")   
     
 def __eq__(self, other):
         if isinstance(other, User):

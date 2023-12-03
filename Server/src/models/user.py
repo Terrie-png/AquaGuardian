@@ -1,17 +1,39 @@
 from flask_bcrypt import Bcrypt
 from .base_model import BaseModel
 from flask import jsonify
+from flask_sqlalchemy import SQLAlchemy
 
-class User(BaseModel):
-    def __init__(self, id=None, name=None, email=None, password=None, role=None):
-        super().__init__()
-        self.id = id
+
+db = SQLAlchemy(app)
+
+from .__init__ import db
+
+class User(db.Model):
+        __tablename__ = "User"
+u_id = db.Column(db.Integer, primary_key=True)
+
+user_id = db.Column(db.String(4096))
+name = db.Column(db.String(4096))
+email = db.Column(db.String(4096))
+password = db.Column(db.String(4096))
+authkey = db.Column(db.String(4096))
+login = db.Column(db.Integer)
+read_access = db.Column(db.Integer)
+write_access = db.Column(db.Integer)
+
+    
+def __init__(self, id=None, name=None, email=None, password=None, role=None):
+      
+        self.u_id = u_id
         self.name = name
         self.email = email
         self.password = password
-        self.role = role
+        self.authkey = authkey
+        self.login = login
+        self.read_access = read_access
+        self.write_access = write_access
         
-    def serialize(self):
+def serialize(self):
         return jsonify({
             'id': self.id,
             'name': self.name,
@@ -20,7 +42,7 @@ class User(BaseModel):
         })
         
         
-    def deserialize(self, data):
+def deserialize(self, data):
 
         if(type(data) is not dict):
             self.id = data[0]
@@ -36,14 +58,14 @@ class User(BaseModel):
             self.password = data['password']
             self.role = data['role']
             
-    def check_password(self, password):
+def check_password(self, password):
         bcrypt = Bcrypt()
         return bcrypt.check_password_hash(self.password, password)
             
-    def __eq__(self, other):
+def __eq__(self, other):
         if isinstance(other, User):
             return self.id == other.id
         return False
     
-    def __dir__(self):
+def __dir__(self):
         return {'id':self.id, 'name':self.name, 'email':self.email, 'password':self.password, 'role':self.role}

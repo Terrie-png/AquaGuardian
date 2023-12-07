@@ -82,7 +82,7 @@ fun MainMenu(
                 onClick = { addDevicesClicked() }
             ) {
                 Text(
-                    text = "Add Device",
+                    text = "About Device",
                     color = Color.White,
                     fontSize = 40.sp,
                     fontFamily = FontFamily.Serif

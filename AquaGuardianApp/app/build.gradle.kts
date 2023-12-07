@@ -53,7 +53,8 @@ dependencies {
     implementation("io.jsonwebtoken:jjwt-api:0.12.0")
 
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.5.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation ("androidx.compose.runtime:runtime-livedata:1.5.4")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
     implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:core:11.1.0")
     implementation ("com.google.android.exoplayer:exoplayer-core:2.19.1")

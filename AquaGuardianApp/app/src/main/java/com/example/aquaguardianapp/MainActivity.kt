@@ -129,6 +129,9 @@ class MainActivity : ComponentActivity() {
                 composable("activeDevices") {
                     activeDevice(backButton = { navController.navigate("mainMenu") })
                 }
+                composable("activeDevicesMoreInfo") {
+                    activeDeviceMoreInfo(backButton = { navController.navigate("activeDevices") })
+                }
                 composable("addDevices") {
                     addDevices(backButton = { navController.navigate("mainMenu") })
                 }

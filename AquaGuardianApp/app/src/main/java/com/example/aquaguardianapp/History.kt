@@ -14,6 +14,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -33,6 +34,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Alignment
 import retrofit2.http.GET
 
 data class Message(
@@ -62,6 +64,16 @@ private val retrofit = Retrofit.Builder()
 
 @Composable
 fun MessageList(messages: List<Message>) {
+    Row(modifier = Modifier.fillMaxWidth().padding(8.dp)) {
+        Spacer(modifier = Modifier.height(30.dp))
+        Text(text = "|Device|", fontSize = 18.sp, color = Color.White,fontWeight = FontWeight.Bold,modifier = Modifier.padding(end = 10.dp))
+        Text(text = "|Status|", fontSize = 18.sp, color = Color.White,fontWeight = FontWeight.Bold,modifier = Modifier.padding(end = 10.dp))
+        Text(text = "|Time|",fontSize = 18.sp, color = Color.White,fontWeight = FontWeight.Bold,modifier = Modifier.padding(end = 10.dp))
+        Text(text = "|Date|",fontSize = 18.sp, color = Color.White,fontWeight = FontWeight.Bold,modifier = Modifier.padding(end = 10.dp, start = 20.dp))
+
+
+    }
+    Divider(color = Color.Black, thickness = 3.dp,)
     LazyColumn {
         itemsIndexed(messages) {index, message ->
             MessageRow(message,index)
@@ -72,7 +84,7 @@ fun MessageList(messages: List<Message>) {
 
 @Composable
 private fun MessageRow(message: Message,index: Int) {
-    val backgroundColor = if (index % 2 == 0) Color(0xFF6ECBFD) else Color(0xFF00C2FF)
+    val backgroundColor = if (index % 2 == 0) Color(0xFF64C9FF) else Color(0xFF00C2FF)
     val qualityColor = if (message.message == " Clean ") Color(0xFF00FF00) else Color(0xFFFF0000)
     Row(
         modifier = Modifier
@@ -83,12 +95,14 @@ private fun MessageRow(message: Message,index: Int) {
         Text(text = message.device, fontSize = 22.sp, color = Color.White)
         Text(text = message.message, fontSize = 22.sp, color = qualityColor)
         Text(text = message.timestamp,fontSize = 22.sp, color = Color.White)
-        Text(text = message.date,fontSize = 22.sp, color = Color.LightGray)
+        Text(text = message.date,fontSize = 22.sp, color = Color.White)
  //       Text(text = message.longitude,fontSize = 20.sp, color = Color.White)
 //        Text(text = message.latitude, overflow = TextOverflow.Clip)
 
     }
+    Divider(color = Color.Black, thickness = 1.dp,)
 }
+
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -217,7 +231,7 @@ fun history(
                         " Clean ",
                         "Device 1",
                         "12:43",
-                        " 23/11/2023 ",
+                        " 26/11/2023 ",
                         //  "-90.33123",
                         //                             "38.7545"
                     ),
@@ -225,7 +239,7 @@ fun history(
                         " Clean ",
                         "Device 2",
                         "08:43",
-                        " 23/11/2023 ",
+                        " 26/11/2023 ",
                         //   "-91.22123",
                         //                            "23.1634"
                     ),
@@ -233,7 +247,7 @@ fun history(
                         " Dirty ",
                         "Device 3",
                         "12:46",
-                        " 23/11/2023 ",
+                        " 26/11/2023 ",
                         //   "-92.78643",
                         //                            "41.1145"
                     ),
@@ -241,7 +255,7 @@ fun history(
                         " Clean ",
                         "Device 1",
                         "12:06",
-                        " 24/11/2023 ",
+                        " 27/11/2023 ",
                         // "-90.33123",
                         //                            "38.7545"
                     ),
@@ -249,7 +263,7 @@ fun history(
                         " Clean ",
                         "Device 2",
                         "18:55",
-                        " 24/11/2023 ",
+                        " 27/11/2023 ",
                         //  "-91.22123",
                         //                           "23.1634"
                     ),
@@ -257,7 +271,7 @@ fun history(
                         " Clean ",
                         "Device 3",
                         "22:35",
-                        " 24/11/2023 ",
+                        " 27/11/2023 ",
                         //  "-92.78643",
                         //                            "41.1145"
                     ),
@@ -265,7 +279,7 @@ fun history(
                         " Clean ",
                         "Device 1",
                         "03:56",
-                        " 25/11/2023 ",
+                        " 28/11/2023 ",
                         //   "-90.33123",
                         //                          "38.7545"
                     ),
@@ -273,7 +287,7 @@ fun history(
                         " Clean ",
                         "Device 2",
                         "03:12",
-                        " 25/11/2023 ",
+                        " 28/11/2023 ",
                         //   "-91.22123",
                         //                           "23.1634"
                     ),
@@ -281,7 +295,7 @@ fun history(
                         " Clean ",
                         "Device 3",
                         "04:44",
-                        " 25/11/2023 ",
+                        " 28/11/2023 ",
                         //  "-92.78643",
                         //                          "41.1145"
                     ),
@@ -289,7 +303,7 @@ fun history(
                         " Clean ",
                         "Device 1",
                         "12:43",
-                        " 23/11/2023 ",
+                        " 28/11/2023 ",
                         //   "-90.33123",
                         //                           "38.7545"
                     ),
@@ -297,15 +311,15 @@ fun history(
                         " Clean ",
                         "Device 2",
                         "08:43",
-                        " 23/11/2023 ",
+                        " 28/11/2023 ",
                         //    "-91.22123",
                         //                           "23.1634"
                     ),
                     Message(
-                        " Dirty ",
+                        " Clean ",
                         "Device 3",
                         "12:46",
-                        " 23/11/2023 ",
+                        " 28/11/2023 ",
                         //    "-92.78643",
                         //                           "41.1145"
                     ),
@@ -313,7 +327,7 @@ fun history(
                         " Clean ",
                         "Device 1",
                         "12:06",
-                        " 24/11/2023 ",
+                        " 28/11/2023 ",
                         //  "-90.33123",
                         //                             "38.7545"
                     ),
@@ -321,7 +335,7 @@ fun history(
                         " Clean ",
                         "Device 2",
                         "18:55",
-                        " 24/11/2023 ",
+                        " 29/11/2023 ",
                         // "-91.22123",
                         //                           "23.1634"
                     ),
@@ -329,7 +343,7 @@ fun history(
                         " Clean ",
                         "Device 3",
                         "22:35",
-                        " 24/11/2023 ",
+                        " 29/11/2023 ",
                         //  "-92.78643",
                         //                          "41.1145"
                     ),
@@ -337,7 +351,7 @@ fun history(
                         " Clean ",
                         "Device 1",
                         "03:56",
-                        " 25/11/2023 ",
+                        " 29/11/2023 ",
                         //  "-90.33123",
                         //                           "38.7545"
                     ),
@@ -345,7 +359,7 @@ fun history(
                         " Clean ",
                         "Device 2",
                         "03:12",
-                        " 25/11/2023 ",
+                        " 29/11/2023 ",
                         //   "-91.22123",
                         //       "23.1634"
                     ),
@@ -353,7 +367,7 @@ fun history(
                         " Clean ",
                         "Device 3",
                         "04:44",
-                        " 25/11/2023 ",
+                        " 29/11/2023 ",
                         // "-92.78643",
                         //        "41.1145"
                     ),
@@ -361,7 +375,7 @@ fun history(
                         " Clean ",
                         "Device 1",
                         "12:43",
-                        " 23/11/2023 ",
+                        " 30/11/2023 ",
                         //   "-90.33123",
                         //        "38.7545"
                     ),
@@ -369,7 +383,7 @@ fun history(
                         " Clean ",
                         "Device 2",
                         "08:43",
-                        " 23/11/2023 ",
+                        " 30/11/2023 ",
                         // "-91.22123",
                         //        "23.1634"
                     ),
@@ -377,7 +391,7 @@ fun history(
                         " Dirty ",
                         "Device 3",
                         "12:46",
-                        " 23/11/2023 ",
+                        " 30/11/2023 ",
                         //  "-92.78643",
                         //         "41.1145"
                     ),
@@ -385,23 +399,23 @@ fun history(
                         " Clean ",
                         "Device 1",
                         "12:06",
-                        " 24/11/2023 ",
+                        " 30/11/2023 ",
                         //  "-90.33123",
                         //        "38.7545"
                     ),
                     Message(
-                        " Clean ",
+                        " Dirty ",
                         "Device 2",
                         "18:55",
-                        " 24/11/2023 ",
+                        " 30/11/2023 ",
                         //  "-91.22123",
                         //       "23.1634"
                     ),
                     Message(
-                        " Clean ",
+                        " Dirty ",
                         "Device 3",
                         "22:35",
-                        " 24/11/2023 ",
+                        " 30/11/2023 ",
                         // "-92.78643",
                         //       "41.1145"
                     ),

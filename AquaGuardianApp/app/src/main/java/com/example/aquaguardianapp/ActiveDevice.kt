@@ -117,7 +117,7 @@ fun activeDevice(
                 color = Color.White,
 
                 )
-            IconButton(onClick = { moreDeviceInfo() }) {
+            IconButton(onClick = { }) {
                 Log.d("Active Device", "Device 2 button clicked")
                 ShapeGreen()
             }
@@ -135,7 +135,7 @@ fun activeDevice(
                 fontWeight = FontWeight.Bold,
                 color = Color.White,
             )
-            IconButton(onClick = { moreDeviceInfo() }) {
+            IconButton(onClick = { }) {
                 Log.d("Active Device", "Device 3 button clicked")
                 ShapeGreen()
             }

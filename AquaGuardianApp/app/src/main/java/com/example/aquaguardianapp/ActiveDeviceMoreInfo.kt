@@ -63,13 +63,43 @@ fun activeDeviceMoreInfo(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                TextField(
-                    value = text,
-                    onValueChange = { text = it },
-                    label = { Text("This Device has too high PH") },
-                    modifier = Modifier.padding(16.dp)
+                Text(
+                    text = "WARNING: Device 1",
+                    modifier = Modifier.padding(top = 40.dp),
+                    fontSize = 30.sp,
+                    color = Color.Red,
+                    fontWeight = FontWeight.Bold,
+                )
+                Text(
+                    text = "PH Level is too high!",
+                    modifier = Modifier.padding(top = 20.dp),
+                    fontSize = 30.sp,
+                    color = Color.Red,
+                    fontWeight = FontWeight.Bold,
                 )
                 ShapeRed()
+                Text(
+                    text = "PH Level: 5.9",
+                    modifier = Modifier.padding(top = 40.dp),
+                    fontSize = 20.sp,
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold,
+                )
+
+                Text(
+                    text = "TDS Level: 0.5",
+                    modifier = Modifier.padding(top = 40.dp),
+                    fontSize = 20.sp,
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold,
+                )
+                Text(
+                    text = "Turbidity Level: 0.5",
+                    modifier = Modifier.padding(top = 40.dp),
+                    fontSize = 20.sp,
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold,
+                )
             }
         }
     )

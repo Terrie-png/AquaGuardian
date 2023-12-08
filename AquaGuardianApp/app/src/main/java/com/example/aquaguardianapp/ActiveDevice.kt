@@ -2,7 +2,6 @@ package com.example.aquaguardianapp
 
 import android.annotation.SuppressLint
 import android.util.Log
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -26,12 +25,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.material3.Scaffold
-import androidx.compose.ui.res.painterResource
 
 
 @Composable
 fun ShapeGreen() {
-
+    Log.d("ShapeGreen", "ShapeGreen called")
     Box(
 
         modifier = Modifier
@@ -44,7 +42,7 @@ fun ShapeGreen() {
 }
 @Composable
 fun ShapeRed() {
-
+    Log.d("ShapeRed", "ShapeRed called")
     Box(
 
         modifier = Modifier
@@ -63,6 +61,7 @@ fun ShapeRed() {
 @Composable
 fun activeDevice(
     backButton: () -> Unit,
+    moreDeviceInfo: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Log.d("Active Device", "Active Device page called")
@@ -91,32 +90,63 @@ fun activeDevice(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(
-            text = "Device 1",
-            modifier = Modifier.padding(top = 100.dp),
-            fontSize = 50.sp,
-            color = Color.White,
-            fontWeight = FontWeight.Bold,
-        )
-        ShapeRed()
-        Text(
-            text = "Device 2",
-            modifier = Modifier.padding(top = 30.dp),
-            fontSize = 50.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color.White,
+            Text(
+                text = "Device 1",
+                modifier = Modifier.padding(top = 60.dp),
+                fontSize = 50.sp,
+                color = Color.White,
+                fontWeight = FontWeight.Bold,
+            )
+            IconButton(onClick = { moreDeviceInfo() }) {
+                Log.d("Active Device", "Device 1 button clicked")
+                ShapeRed()
+            }
+            Text(
+                text =" WARNING! Click on the square for more info ",
+                modifier = Modifier.padding(top = 5.dp),
+                fontSize = 15.sp,
+                color = (Color(0xFFCE0404)),
+                fontWeight = FontWeight.Bold,
+            )
 
-        )
-        ShapeGreen()
-        Text(
-            text = "Device 3",
-            modifier = Modifier.padding(top = 30.dp),
-            fontSize = 50.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color.White,
-        )
-        ShapeGreen()
-      }
+            Text(
+                text = "Device 2",
+                modifier = Modifier.padding(top = 30.dp),
+                fontSize = 50.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White,
+
+                )
+            IconButton(onClick = { moreDeviceInfo() }) {
+                Log.d("Active Device", "Device 2 button clicked")
+                ShapeGreen()
+            }
+            Text(
+                text =" Water quality is good ",
+                modifier = Modifier.padding(top = 5.dp),
+                fontSize = 15.sp,
+                color = (Color(0xFF146302)),
+                fontWeight = FontWeight.Bold,
+            )
+            Text(
+                text = "Device 3",
+                modifier = Modifier.padding(top = 30.dp),
+                fontSize = 50.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White,
+            )
+            IconButton(onClick = { moreDeviceInfo() }) {
+                Log.d("Active Device", "Device 3 button clicked")
+                ShapeGreen()
+            }
+            Text(
+                text =" Water quality is good ",
+                modifier = Modifier.padding(top = 5.dp),
+                fontSize = 15.sp,
+                color = (Color(0xFF146302)),
+                fontWeight = FontWeight.Bold,
+            )
+        }
     }
   )
 }

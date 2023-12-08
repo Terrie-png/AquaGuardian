@@ -1,4 +1,5 @@
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -37,6 +38,7 @@ fun MainMenu(
     historyClicked: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    Log.d("Main Menu", "Main Menu screen called")
     Scaffold(
         topBar = {
             TopAppBar(
@@ -45,7 +47,7 @@ fun MainMenu(
                         painter = painterResource(id = R.drawable.aglogo),
                         contentDescription = "Logo",
                         modifier = Modifier.padding(start = 5.dp)
-                            .size(100.dp).shadow(10.dp)
+                            .size(100.dp)
                     )
                 },
                 title = {
@@ -66,7 +68,9 @@ fun MainMenu(
                 modifier = Modifier
                     .padding(top = 40.dp).shadow(10.dp)
                     .fillMaxWidth(),
-                onClick = { activeDevicesClicked() }
+                onClick = {
+                    Log.d("Main Menu", "Active Devices button clicked")
+                    activeDevicesClicked() }
             ) {
                 Text(
                     text = "Active Devices",
@@ -79,7 +83,9 @@ fun MainMenu(
                 modifier = Modifier
                     .padding(top = 40.dp).shadow(10.dp)
                     .fillMaxWidth(),
-                onClick = { addDevicesClicked() }
+                onClick = {
+                    Log.d("Main Menu", "About Devices button clicked")
+                    addDevicesClicked() }
             ) {
                 Text(
                     text = "About Device",
@@ -92,7 +98,9 @@ fun MainMenu(
                 modifier = Modifier
                     .padding(top = 40.dp).shadow(10.dp)
                     .fillMaxWidth(),
-                onClick = { locationClicked() }
+                onClick = {
+                    Log.d("Main Menu", "Location button clicked")
+                    locationClicked() }
             ) {
                 Text(
                     text = "Location",
@@ -105,7 +113,9 @@ fun MainMenu(
                 modifier = Modifier
                     .padding(top = 40.dp).shadow(10.dp)
                     .fillMaxWidth(),
-                onClick = { historyClicked() }
+                onClick = {
+                    Log.d("Main Menu", "History button clicked")
+                    historyClicked() }
             ) {
                 Text(
                     text = "History",

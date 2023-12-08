@@ -55,6 +55,7 @@ fun OnboardingScreen(
         Button(
             modifier = Modifier.padding(top = 40.dp),
             onClick = onContinueClicked
+
         ) {
             Text(
                 text = "Login",

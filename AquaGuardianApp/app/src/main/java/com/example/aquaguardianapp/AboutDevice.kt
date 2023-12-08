@@ -210,6 +210,7 @@ fun videoPlayer(
         modifier = modifier,
         text = annotatedString,
         onClick = {
+            Log.d("ClickableText", "onClick: $it")
             annotatedString
                 .getStringAnnotations("URL", it, it)
                 .firstOrNull()?.let { stringAnnotation ->

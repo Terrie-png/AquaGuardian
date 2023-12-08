@@ -47,14 +47,8 @@ import com.example.aquaguardianapp.ui.theme.*
 import android.util.Log
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.interaction.collectIsPressedAsState
-import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.platform.LocalUriHandler
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextDecoration
 import kotlinx.coroutines.delay
 import locations
 
@@ -127,7 +121,10 @@ class MainActivity : ComponentActivity() {
                         locationClicked = { navController.navigate("locations") })
                 }
                 composable("activeDevices") {
-                    activeDevice(backButton = { navController.navigate("mainMenu") })
+                    activeDevice(
+                        backButton = { navController.navigate("mainMenu") },
+                        moreDeviceInfo = { navController.navigate("activeDevicesMoreInfo")},
+                    )
                 }
                 composable("activeDevicesMoreInfo") {
                     activeDeviceMoreInfo(backButton = { navController.navigate("activeDevices") })
@@ -156,7 +153,7 @@ fun AnimatedShapeTouch(logout: () -> Unit) {
         Box(
 
             modifier = Modifier
-                .background(color = Color.Red, RoundedCornerShape(cornerRadius))
+                .background(color = Color(0xFFD13D4E), RoundedCornerShape(cornerRadius))
                 .size(100.dp)
                 .clip(RoundedCornerShape(cornerRadius))
                 .clickable(
@@ -178,6 +175,7 @@ fun AnimatedShapeTouch(logout: () -> Unit) {
         }
 
     LaunchedEffect(buttonClicked) {
+        Log.d("AnimatedShapeTouch", "LaunchedEffect called")
         if (buttonClicked) {
             delay(1000)
             logout()

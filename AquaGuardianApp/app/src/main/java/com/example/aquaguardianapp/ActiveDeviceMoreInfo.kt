@@ -2,14 +2,11 @@ package com.example.aquaguardianapp
 
 import android.annotation.SuppressLint
 import android.util.Log
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -26,7 +23,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.material3.Scaffold
-import androidx.compose.ui.res.painterResource
 
 
 
@@ -37,7 +33,7 @@ fun activeDeviceMoreInfo(
     backButton: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Log.d("Active Device", "Active Device page called")
+    Log.d("Device 1 Info", "Device 1 Info screen called")
 
     Scaffold(
         topBar = {
@@ -48,7 +44,7 @@ fun activeDeviceMoreInfo(
                     }
                 },
                 title = {
-                    Text("Active Devices",
+                    Text("Device 1 Info",
                         fontSize = 50.sp,
                         fontWeight = FontWeight.Bold,
                         fontFamily = FontFamily.Cursive)
@@ -71,23 +67,6 @@ fun activeDeviceMoreInfo(
                     fontWeight = FontWeight.Bold,
                 )
                 ShapeRed()
-                Text(
-                    text = "Device 2",
-                    modifier = Modifier.padding(top = 30.dp),
-                    fontSize = 50.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.White,
-
-                    )
-                ShapeGreen()
-                Text(
-                    text = "Device 3",
-                    modifier = Modifier.padding(top = 30.dp),
-                    fontSize = 50.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.White,
-                )
-                ShapeGreen()
             }
         }
     )

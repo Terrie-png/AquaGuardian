@@ -72,7 +72,7 @@ fun MessageList(messages: List<Message>) {
 
 @Composable
 private fun MessageRow(message: Message,index: Int) {
-    val backgroundColor = if (index % 2 == 0) Color(0xFF039AC9) else Color(0xFF00C2FF)
+    val backgroundColor = if (index % 2 == 0) Color(0xFF6ECBFD) else Color(0xFF00C2FF)
     val qualityColor = if (message.message == " Clean ") Color(0xFF00FF00) else Color(0xFFFF0000)
     Row(
         modifier = Modifier
@@ -80,10 +80,10 @@ private fun MessageRow(message: Message,index: Int) {
             .background(backgroundColor)
     ) {
         Spacer(modifier = Modifier.height(30.dp))
-        Text(text = message.device, fontSize = 25.sp, color = Color.White)
-        Text(text = message.message, fontSize = 25.sp, color = qualityColor)
-        Text(text = message.timestamp,fontSize = 25.sp, color = Color.White)
-        Text(text = message.date,fontSize = 25.sp, color = Color.LightGray)
+        Text(text = message.device, fontSize = 22.sp, color = Color.White)
+        Text(text = message.message, fontSize = 22.sp, color = qualityColor)
+        Text(text = message.timestamp,fontSize = 22.sp, color = Color.White)
+        Text(text = message.date,fontSize = 22.sp, color = Color.LightGray)
  //       Text(text = message.longitude,fontSize = 20.sp, color = Color.White)
 //        Text(text = message.latitude, overflow = TextOverflow.Clip)
 

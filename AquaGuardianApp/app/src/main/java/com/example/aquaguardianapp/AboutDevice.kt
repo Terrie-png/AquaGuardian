@@ -73,19 +73,18 @@ fun addDevices(
             {}
                 Box(modifier = modifier
                     .fillMaxWidth().shadow(8.dp)
-                    .background(Color(0xFFF0F0F0)).padding(30.dp),) {
+                    .background(Color(0xFF6ECBFD)).padding(30.dp),) {
                     Text(
                         modifier = Modifier.padding(top = 10.dp),
                         text = "Device Name: ",
-                        color = Color.Black,
+                        color = Color.White,
                         fontSize = 30.sp,
                         fontWeight = FontWeight.Bold,
-                        fontFamily = FontFamily.Cursive
                     )
                     Text(
                         modifier = Modifier.padding(top = 45.dp),
                         text = "Joe's Device",
-                        color = Color.Blue,
+                        color = Color.White,
                         fontWeight = FontWeight.Bold,
                         fontSize =15.sp,
                     )
@@ -96,14 +95,13 @@ fun addDevices(
                 {}
                 Box(modifier = modifier
                     .fillMaxWidth().shadow(8.dp)
-                    .background(Color(0xFFF0F0F0)).padding(30.dp),) {
+                    .background(Color(0xFF6ECBFD)).padding(30.dp),) {
                     Text(
                         modifier = Modifier.padding(top = 20.dp),
                         text = "Tutorial Video: ",
-                        color = Color.Black,
+                        color = Color.White,
                         fontSize = 30.sp,
                         fontWeight = FontWeight.Bold,
-                        fontFamily = FontFamily.Cursive
                     )
                     videoPlayer(
                         modifier = Modifier.padding(top = 60.dp),
@@ -117,14 +115,13 @@ fun addDevices(
                 {}
                 Box(modifier = modifier
                     .fillMaxWidth().shadow(8.dp)
-                    .background(Color(0xFFF0F0F0)).padding(30.dp),) {
+                    .background(Color(0xFF6ECBFD)).padding(30.dp),) {
                     Text(
                         modifier = Modifier.padding(top = 20.dp),
                         text = "Check Device Status:",
-                        color = Color.Black,
+                        color = Color.White,
                         fontSize = 30.sp,
                         fontWeight = FontWeight.Bold,
-                        fontFamily = FontFamily.Cursive
                     )
 
                     videoPlayer(
@@ -140,19 +137,18 @@ fun addDevices(
                 {}
                 Box(modifier = modifier
                     .fillMaxWidth().shadow(10.dp)
-                    .background(Color(0xFFF0F0F0)).padding(40.dp),) {
+                    .background(Color(0xFF6ECBFD)).padding(40.dp),) {
                     Text(
                         modifier = Modifier.padding(top = 0.dp),
                         text = "Contact Us",
-                        color = Color.Black,
+                        color = Color.White,
                         fontSize = 30.sp,
                         fontWeight = FontWeight.Bold,
-                        fontFamily = FontFamily.Cursive
                     )
                     Text(
-                        modifier = Modifier.padding(top = 30.dp),
+                        modifier = Modifier.padding(top = 40.dp),
                         text = "aquaguardianscontact@gmail.com",
-                        color = Color.Blue,
+                        color = Color.White,
                         fontWeight = FontWeight.Bold,
                         fontSize = 15.sp,
                     )
@@ -166,7 +162,7 @@ fun videoPlayer(
     modifier: Modifier = Modifier,
     fullText: String,
     hyperLinks: Map<String, String>,
-    linkTextColor: Color = Color.Blue,
+    linkTextColor: Color = Color.White,
     linkTextFontWeight: FontWeight = FontWeight.Bold,
     linkTextDecoration: TextDecoration = TextDecoration.None,
     fontSize: TextUnit = TextUnit.Unspecified

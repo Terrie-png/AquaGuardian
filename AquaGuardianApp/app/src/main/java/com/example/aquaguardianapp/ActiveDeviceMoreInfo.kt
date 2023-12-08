@@ -23,7 +23,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.material3.Scaffold
-
+import androidx.compose.material3.TextField
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -34,7 +38,7 @@ fun activeDeviceMoreInfo(
     modifier: Modifier = Modifier,
 ) {
     Log.d("Device 1 Info", "Device 1 Info screen called")
-
+    var text by remember { mutableStateOf("") }
     Scaffold(
         topBar = {
             TopAppBar(
@@ -59,12 +63,11 @@ fun activeDeviceMoreInfo(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(
-                    text = "Device 1",
-                    modifier = Modifier.padding(top = 100.dp),
-                    fontSize = 50.sp,
-                    color = Color.White,
-                    fontWeight = FontWeight.Bold,
+                TextField(
+                    value = text,
+                    onValueChange = { text = it },
+                    label = { Text("This Device has too high PH") },
+                    modifier = Modifier.padding(16.dp)
                 )
                 ShapeRed()
             }

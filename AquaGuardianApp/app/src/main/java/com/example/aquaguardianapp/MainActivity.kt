@@ -5,7 +5,7 @@ import OnboardingScreen
 import Registers
 import addDevices
 import android.os.Bundle
-import android.widget.Toast
+ main
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
@@ -36,25 +36,16 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import android.content.Context
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.material3.Divider
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.*
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.*
 import com.example.aquaguardianapp.ui.theme.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+ main
 import android.util.Log
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.interaction.collectIsPressedAsState
@@ -67,10 +58,23 @@ import locations
 // ___________References___________
 
 // Co-Pilot was used for this project
+//
 // Navigation code source
 //https://github.com/philipplackner/NestedNavigationGraphsGuide.git
+//
 // Animation
 //https://github.com/cp-radhika-s/CoolButtonClickEffects/blob/main/app/src/main/java/com/app/click_effects/MainActivity.kt
+//
+// Retrofit & Json
+//https://developer.android.com/codelabs/basic-android-kotlin-training-getting-data-internet#0
+//
+// Lazy Column
+//https://developer.android.com/jetpack/compose/lists
+//
+// Video Player
+//https://gist.github.com/stevdza-san/ff9dbec0e072d8090e1e6d16e6b73c91
+
+ main
 
 
 class MainActivity : ComponentActivity() {
@@ -80,95 +84,17 @@ class MainActivity : ComponentActivity() {
             AquaGuardianAppTheme { // A surface container using the 'background' color from the theme
                 Surface( // on below line we are specifying modifier and color for our app
                     modifier = Modifier.fillMaxSize()
-                ) {
 
-                        // on below line we are display list view
-                        // method to display our list view.
-                       // DisplayListView()
-                        MyApp()
-                    }
+
+                ) {
+                    MyApp()
                 }
             }
-        Log.d("MainActivity", "onCreate called")
         }
+        Log.d("MainActivity", "onCreate called")
     }
-
-//fun getJSONData(courseList: MutableList<String>, ctx: Context) {
-//    // on below line we are creating a retrofit  builder and passing our base url
-//
-//    val retrofit = Retrofit.Builder()
-//        .baseUrl("https://jsonkeeper.com/b/")
-//        // on below line we are calling add Converter factory as Gson converter factory.
-//
-//        .addConverterFactory(GsonConverterFactory.create())
-//        // at last we are building our retrofit builder.
-//        .build()
-//
-//    // below line is to create an instance for our retrofit api class.
-//    val retrofitAPI = retrofit.create(RetrofitAPI::class.java)
-//
-//    // on below line we are calling a method to get all the courses from API.
-//    val call: Call<ArrayList<ListModal>> = retrofitAPI.getLanguages()
-//
-//    // on below line we are calling method to enqueue and calling
-//    // all the data from array list.
-//    call!!.enqueue(object : Callback<ArrayList<ListModal>?> {
-//        override fun onResponse(
-//            call: Call<ArrayList<ListModal>?>,
-//            response: Response<ArrayList<ListModal>?>
-//        ) {
-//            // on below line we are checking if response is successful.
-//            if (response.isSuccessful) {
-//                // on below line we are creating a new list
-//
-//                // on below line we are passing
-//                // our response to our list
-//                var lst: ArrayList<ListModal> = response.body()!!
-//
-//                // on below line we are passing
-//                // data from lst to course list.
-//                for (i in 0 until lst.size) {
-//                    // on below line we are adding data to course list.
-//                    courseList.add(lst.get(i).languageName)
-//                }
-//                Log.d("MainActivity", "Api call successful")
-//            }
-//        }
-//
-//        override fun onFailure(call: Call<ArrayList<ListModal>?>, t: Throwable) {
-//            Log.d("MainActivity", "Api call failed")
-//
-//            // displaying an error message in toast
-//            Toast.makeText(ctx, "Fail to get the data..", Toast.LENGTH_SHORT)
-//                .show()
-//        }
-//    })
-//}
-
-//@Composable
-//fun DisplayListView() {
-//    val context = LocalContext.current
-//    // on below line we are creating and
-//    // initializing our array list
-//    val courseList = remember { mutableStateListOf<String>() }
-//    getJSONData(courseList, context)
-//
-//    // on the below line we are creating a lazy column for displaying a list view.on below line we are calling lazy column for displaying listview.
-//    LazyColumn {
-//        // on below line we are populating
-//        // items for listview.
-//        items(courseList) { language ->
-//            // on below line we are specifying ui for each item of list view.
-//            // we are specifying a simple text for each item of our list view.
-//            Text(language, modifier = Modifier.padding(15.dp))
-//            // on below line we are specifying
-//            // divider for each list item
-//            Divider()
-//        }
-//    }
-//}
-
-
+}
+ main
     @Composable
     fun MyApp(modifier: Modifier = Modifier) {
         val navController = rememberNavController()
@@ -200,7 +126,15 @@ class MainActivity : ComponentActivity() {
                         locationClicked = { navController.navigate("locations") })
                 }
                 composable("activeDevices") {
-                    activeDevice(backButton = { navController.navigate("mainMenu") })
+
+                    activeDevice(
+                        backButton = { navController.navigate("mainMenu") },
+                        moreDeviceInfo = { navController.navigate("activeDevicesMoreInfo")},
+                    )
+                }
+                composable("activeDevicesMoreInfo") {
+                    activeDeviceMoreInfo(backButton = { navController.navigate("activeDevices") })
+ main
                 }
                 composable("addDevices") {
                     addDevices(backButton = { navController.navigate("mainMenu") })
@@ -226,7 +160,9 @@ fun AnimatedShapeTouch(logout: () -> Unit) {
         Box(
 
             modifier = Modifier
-                .background(color = Color.Red, RoundedCornerShape(cornerRadius))
+
+                .background(color = Color(0xFFD13D4E), RoundedCornerShape(cornerRadius))
+ main
                 .size(100.dp)
                 .clip(RoundedCornerShape(cornerRadius))
                 .clickable(
@@ -248,6 +184,10 @@ fun AnimatedShapeTouch(logout: () -> Unit) {
         }
 
     LaunchedEffect(buttonClicked) {
+
+        Log.d("AnimatedShapeTouch", "LaunchedEffect called")
+
+ main
         if (buttonClicked) {
             delay(1000)
             logout()

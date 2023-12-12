@@ -1,21 +1,16 @@
 package com.example.aquaguardianapp
 
-import android.os.Message
+
+import android.annotation.SuppressLint
 import android.util.Log
-import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumn
+ main
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -31,21 +26,13 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.ripple.rememberRipple
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.modifier.modifierLocalMapOf
-import kotlinx.coroutines.delay
+import androidx.compose.material3.Scaffold
+
 
 @Composable
 fun ShapeGreen() {
-
+    Log.d("ShapeGreen", "ShapeGreen called")
+ main
     Box(
 
         modifier = Modifier
@@ -58,6 +45,7 @@ fun ShapeGreen() {
 }
 @Composable
 fun ShapeRed() {
+    Log.d("ShapeRed", "ShapeRed called")
 
     Box(
 
@@ -69,64 +57,101 @@ fun ShapeRed() {
     ) {
     }
     }
+
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun activeDevice(
     backButton: () -> Unit,
+    moreDeviceInfo: () -> Unit,
+
     modifier: Modifier = Modifier,
 ) {
     Log.d("Active Device", "Active Device page called")
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                navigationIcon = {
+                        IconButton(onClick = { backButton() }) {
+                            Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
+                        }
+                },
+                title = {
+                    Text("Active Devices",
+                        fontSize = 50.sp,
+                        fontWeight = FontWeight.Bold,
+                        fontFamily = FontFamily.Cursive)
+                }
 
-    Column(
-        modifier = modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Top,
+
+            )
+        },
+        content = {
+        Column(
+        modifier = modifier.fillMaxSize().background(Color(0xFF00C2FF)),
+        verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        TopAppBar(title = {
             Text(
-                text = "Active Device",
+                text = "Device 1",
+                modifier = Modifier.padding(top = 60.dp),
                 fontSize = 50.sp,
+                color = Color.White,
                 fontWeight = FontWeight.Bold,
-                fontFamily = FontFamily.Cursive
+            )
+            IconButton(onClick = { moreDeviceInfo() }) {
+                Log.d("Active Device", "Device 1 button clicked")
+                ShapeRed()
+            }
+            Text(
+                text =" WARNING! Click on the square for more info ",
+                modifier = Modifier.padding(top = 5.dp),
+                fontSize = 15.sp,
+                color = (Color(0xFFCE0404)),
+                fontWeight = FontWeight.Bold,
             )
 
+            Text(
+                text = "Device 2",
+                modifier = Modifier.padding(top = 30.dp),
+                fontSize = 50.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White,
 
-        },
-            navigationIcon = {
-                IconButton(onClick = { backButton() }) {
-                    Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
-                }
-            })
+                )
+            IconButton(onClick = { }) {
+                Log.d("Active Device", "Device 2 button clicked")
+                ShapeGreen()
+            }
+            Text(
+                text =" Water quality is good ",
+                modifier = Modifier.padding(top = 5.dp),
+                fontSize = 15.sp,
+                color = (Color(0xFF146302)),
+                fontWeight = FontWeight.Bold,
+            )
+            Text(
+                text = "Device 3",
+                modifier = Modifier.padding(top = 30.dp),
+                fontSize = 50.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White,
+            )
+            IconButton(onClick = { }) {
+                Log.d("Active Device", "Device 3 button clicked")
+                ShapeGreen()
+            }
+            Text(
+                text =" Water quality is good ",
+                modifier = Modifier.padding(top = 5.dp),
+                fontSize = 15.sp,
+                color = (Color(0xFF146302)),
+                fontWeight = FontWeight.Bold,
+            )
+        }
     }
-    Column(
-        modifier = modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = "Device 1",
-            modifier = Modifier.padding(top = 100.dp),
-            fontSize = 50.sp,
-            color = Color.White,
-            fontWeight = FontWeight.Bold,
-        )
-        ShapeRed()
-        Text(
-            text = "Device 2",
-            modifier = Modifier.padding(top = 30.dp),
-            fontSize = 50.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color.White,
-
-        )
-        ShapeGreen()
-        Text(
-            text = "Device 3",
-            modifier = Modifier.padding(top = 30.dp),
-            fontSize = 50.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color.White,
-        )
-        ShapeGreen()
-    }
+  )
 }
+
+

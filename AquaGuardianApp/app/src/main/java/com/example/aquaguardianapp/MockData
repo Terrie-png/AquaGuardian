@@ -32,12 +32,10 @@
             "address": "1 Main St",
             "userUID" : "1111111111"
             }
-        ]
-}
+        ],
 
 
-
-{
+ main
 "RegistrationResponse":[
         {
             "success":true,
@@ -63,10 +61,10 @@
             "userUID" : "1234567890",
             "message": "Registration Successful"
             }
-        ]
-}
+        ],
 
-{
+
+ main
 "Registration":[
         {
             "success":true,

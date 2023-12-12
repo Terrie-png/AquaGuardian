@@ -44,11 +44,14 @@ fun OnboardingScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
+ FrontEnd_Sprint10(b_branch)
             painter = painterResource(id = R.drawable.aglogo),
             contentDescription = "Aqua Guardian Logo",
             modifier = Modifier
                 .padding(bottom = 40.dp)
                 .size(300.dp)
+
+ main
 
         )
 
@@ -56,6 +59,8 @@ fun OnboardingScreen(
             modifier = Modifier.padding(top = 40.dp),
             onClick = onContinueClicked
 
+
+ main
         ) {
             Text(
                 text = "Login",
@@ -67,7 +72,11 @@ fun OnboardingScreen(
 
         }
         Button(
+FrontEnd_Sprint10(b_branch)
             modifier = Modifier.padding(bottom = 100.dp, top = 10.dp),
+
+  
+ main
             onClick = registerClicked
         ) {
             Text(

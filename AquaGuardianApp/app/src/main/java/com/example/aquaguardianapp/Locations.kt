@@ -29,7 +29,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.aquaguardianapp.R
 
-
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -38,7 +37,6 @@ fun locations(
     modifier: Modifier = Modifier,
 ) {
     Log.d("Locations", "Locations page called")
-
     Scaffold(
         topBar = {
             TopAppBar(
@@ -68,5 +66,3 @@ fun locations(
         }
     )
 }
-
-

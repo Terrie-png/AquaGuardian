@@ -21,6 +21,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -31,7 +32,6 @@ import androidx.compose.ui.unit.sp
 import com.example.aquaguardianapp.AnimatedShapeTouch
 import com.example.aquaguardianapp.R
 import androidx.compose.material3.Icon
-
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -174,5 +174,4 @@ fun MainMenu(
         },
     )
 }
-
 

@@ -1,5 +1,6 @@
 package com.example.aquaguardianapp
 
+
 import android.annotation.SuppressLint
 import android.util.Log
 import androidx.compose.foundation.background
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+ main
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -30,6 +32,7 @@ import androidx.compose.material3.Scaffold
 @Composable
 fun ShapeGreen() {
     Log.d("ShapeGreen", "ShapeGreen called")
+ main
     Box(
 
         modifier = Modifier
@@ -43,6 +46,7 @@ fun ShapeGreen() {
 @Composable
 fun ShapeRed() {
     Log.d("ShapeRed", "ShapeRed called")
+
     Box(
 
         modifier = Modifier
@@ -54,18 +58,17 @@ fun ShapeRed() {
     }
     }
 
-
-
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun activeDevice(
     backButton: () -> Unit,
     moreDeviceInfo: () -> Unit,
+
     modifier: Modifier = Modifier,
 ) {
     Log.d("Active Device", "Active Device page called")
-
     Scaffold(
         topBar = {
             TopAppBar(
@@ -150,4 +153,5 @@ fun activeDevice(
     }
   )
 }
+
 

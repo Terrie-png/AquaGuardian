@@ -54,7 +54,11 @@ fun Registers(
             fontFamily = FontFamily.Cursive
         )
         Image(
+
             painter = painterResource(id = R.drawable.aglogo),
+
+       
+main
             contentDescription = "Aqua Guardian Logo",
             modifier = Modifier
                 .padding(top = 40.dp)

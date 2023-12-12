@@ -35,6 +35,7 @@
         ],
 
 
+ main
 "RegistrationResponse":[
         {
             "success":true,
@@ -62,6 +63,8 @@
             }
         ],
 
+
+ main
 "Registration":[
         {
             "success":true,

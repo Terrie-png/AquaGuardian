@@ -5,6 +5,7 @@ import OnboardingScreen
 import Registers
 import addDevices
 import android.os.Bundle
+ main
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
@@ -44,6 +45,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.unit.*
 import com.example.aquaguardianapp.ui.theme.*
+ main
 import android.util.Log
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.interaction.collectIsPressedAsState
@@ -72,6 +74,7 @@ import locations
 // Video Player
 //https://gist.github.com/stevdza-san/ff9dbec0e072d8090e1e6d16e6b73c91
 
+ main
 
 
 class MainActivity : ComponentActivity() {
@@ -82,6 +85,7 @@ class MainActivity : ComponentActivity() {
                 Surface( // on below line we are specifying modifier and color for our app
                     modifier = Modifier.fillMaxSize()
 
+
                 ) {
                     MyApp()
                 }
@@ -90,6 +94,7 @@ class MainActivity : ComponentActivity() {
         Log.d("MainActivity", "onCreate called")
     }
 }
+ main
     @Composable
     fun MyApp(modifier: Modifier = Modifier) {
         val navController = rememberNavController()
@@ -121,6 +126,7 @@ class MainActivity : ComponentActivity() {
                         locationClicked = { navController.navigate("locations") })
                 }
                 composable("activeDevices") {
+
                     activeDevice(
                         backButton = { navController.navigate("mainMenu") },
                         moreDeviceInfo = { navController.navigate("activeDevicesMoreInfo")},
@@ -128,6 +134,7 @@ class MainActivity : ComponentActivity() {
                 }
                 composable("activeDevicesMoreInfo") {
                     activeDeviceMoreInfo(backButton = { navController.navigate("activeDevices") })
+ main
                 }
                 composable("addDevices") {
                     addDevices(backButton = { navController.navigate("mainMenu") })
@@ -153,7 +160,9 @@ fun AnimatedShapeTouch(logout: () -> Unit) {
         Box(
 
             modifier = Modifier
+
                 .background(color = Color(0xFFD13D4E), RoundedCornerShape(cornerRadius))
+ main
                 .size(100.dp)
                 .clip(RoundedCornerShape(cornerRadius))
                 .clickable(
@@ -175,7 +184,10 @@ fun AnimatedShapeTouch(logout: () -> Unit) {
         }
 
     LaunchedEffect(buttonClicked) {
+
         Log.d("AnimatedShapeTouch", "LaunchedEffect called")
+
+ main
         if (buttonClicked) {
             delay(1000)
             logout()

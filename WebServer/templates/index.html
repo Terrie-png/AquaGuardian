@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang = "en">
+        <head>
+                <meta charset = "UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Sensors and actuators</title>
+                <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.7.4.3.js"></script>
+                <script = src="static/js/main.js"></script>
+        </head>
+        <body onload="keepAlive(); time(); setupPubNub();">
+                <main>
+                        <h1>Sensors</h1>
+                        <h3>Connection: <span id="connection_id">...</span></h3>
+                        <h3>Motion: <span id="motion_id">...</span></h3>
+                        <input type="checkbox" id="buzzer" onclick="handleClick(this);"/>
+                        <label for="buzzer">Buzzer On</label>
+                </main>
+        </body>
+</html>

@@ -3,17 +3,63 @@
         <head>
                 <meta charset = "UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Sensors and actuators</title>
+                <title>Aqua Guardian</title>
                 <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.7.4.3.js"></script>
                 <script = src="static/js/main.js"></script>
+                <link href='https://fonts.googleapis.com/css?family=Charm' rel='stylesheet'>
+                <link rel="stylesheet" href="mystyle.css">
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+                <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         </head>
         <body onload="keepAlive(); time(); setupPubNub();">
+                <header class ="top_nav">
+                       
+                        
+                </header>
+                <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+                        <h1 class ="main_title">Aqua Guardian</h1>
+                        
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                          <span class="navbar-toggler-icon"></span>
+                        </button>
+                      
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                
+                          <ul class="navbar-nav ml-auto">
+                                <li class="nav-item">
+                        
+                                              <li class="nav-item">
+                                                <a class="nav-link text-white btn btn-primary btn-lg" href="#">Home</a>
+                                              </li>
+                                              <li class="nav-item">
+                                                <a class="nav-link text-white btn btn-primary btn-lg" href="#">Active Device</a>
+                                              </li>
+                                              <li class="nav-item">
+                                                <a class="nav-link text-white btn btn-primary btn-lg" href="#">Add Device</a>
+                                              </li>
+                                              <li class="nav-item">
+                                                <a class="nav-link text-white btn btn-primary btn-lg" href="#">History</a>
+                                              </li>
+                                              <li class="nav-item">
+                                                <a class="nav-link text-white btn btn-info btn-lg " href="#">Login</a>
+                                              </li>
+                                            </ul>
+                
+                        </div>
+                      </nav>
                 <main>
-                        <h1>Sensors</h1>
-                        <h3>Connection: <span id="connection_id">...</span></h3>
-                        <h3>Motion: <span id="motion_id">...</span></h3>
+                        <h1>Device Name:</h1>
+                        <h3>Connection: <span id="connection_id"></span></h3>
+                        <h3>PH level: <span id="motion_id"></span></h3>
+                        <h3>TDS: <span id="motion_id"></span></h3>
+                        <h3>Turbidity: <span id="motion_id"></span></h3>
+                        <h3>GPS: <span id="motion_id"></span></h3>
                         <input type="checkbox" id="buzzer" onclick="handleClick(this);"/>
-                        <label for="buzzer">Buzzer On</label>
+                        <label for="buzzer">Turn Device On</label>
                 </main>
+                <nav class="navbar fixed-bottom navbar-light bg-primary">
+                      </nav>
         </body>
 </html>

@@ -20,7 +20,7 @@
                 </header>
                 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
                         <h1 class ="main_title">Aqua Guardian</h1>
-                        
+                        <img class ="main_image" src="\WebServer\images\AGLOGO.png" alt="LOGO">
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                           <span class="navbar-toggler-icon"></span>
                         </button>
@@ -49,17 +49,21 @@
                 
                         </div>
                       </nav>
+                      <img src="\WebServer\images\water.jpg" class="img-fluid" alt="Responsive image">
                 <main>
-                        <h1>Device Name:</h1>
-                        <h3>Connection: <span id="connection_id"></span></h3>
-                        <h3>PH level: <span id="motion_id"></span></h3>
-                        <h3>TDS: <span id="motion_id"></span></h3>
-                        <h3>Turbidity: <span id="motion_id"></span></h3>
-                        <h3>GPS: <span id="motion_id"></span></h3>
+                      
+                        <h1> Device Name:Device 1</h1>
+                        <h3> Connection:Active <span id="connection_id"></span></h3>
+                        <h3> PH level:6.6 <span id="motion_id"></span></h3>
+                        <h3> TDS:55 <span id="motion_id"></span></h3>
+                        <h3> Turbidity:783 <span id="motion_id"></span></h3>
+                        <h3> GPS: 36.24419, 60.22379 <span id="motion_id"></span></h3>
                         <input type="checkbox" id="buzzer" onclick="handleClick(this);"/>
                         <label for="buzzer">Turn Device On</label>
+                        <h3 > Water Drinking status: Safe <img class ="statusImage" src="\WebServer\images\safe.png" alt="status"><span id="motion_id"></span></h3>
                 </main>
                 <nav class="navbar fixed-bottom navbar-light bg-primary">
+                  <h2 class ="bottom_title">Safeguarding your hydration!</h2>
                       </nav>
         </body>
 </html>

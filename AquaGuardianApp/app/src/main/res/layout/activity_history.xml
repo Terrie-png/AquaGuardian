@@ -43,7 +43,7 @@
         android:divider="@android:color/transparent"
         android:dividerHeight="10.0dp"
         android:scrollbars="vertical" />
-    
+
     <!-- Clear History Button -->
     <Button
         android:id="@+id/btnClearHistory"

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00c2ff"
+    android:padding="16dp"
+    tools:context=".LoginActivity">
+
+    <!-- Logo Text -->
+    <TextView
+        android:id="@+id/tvLoginLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/kaushan_script"
+        android:text="Aqua Guardian"
+        android:textColor="@color/white"
+        android:textSize="34sp" />
+
+    <!-- Logo Image -->
+    <ImageView
+        android:id="@+id/ivLoginLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvLoginLogo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/mainlogo" />
+
+    <!-- Login Form Container -->
+    <LinearLayout
+        android:layout_width="252dp"
+        android:layout_height="366dp"
+        android:layout_below="@id/ivLoginLogo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/layout_bg"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- Username Input -->
+        <EditText
+            android:id="@+id/etLoginUsername"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/layout_bg"
+            android:hint="Username"
+            android:inputType="text"
+            android:paddingLeft="20dp" />
+
+        <!-- Password Input -->
+        <EditText
+            android:id="@+id/etLoginPassword"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/layout_bg"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:paddingLeft="20dp" />
+
+        <!--        &lt;!&ndash; Show Password Checkbox &ndash;&gt;-->
+        <!--        <CheckBox-->
+        <!--            android:id="@+id/cbShowPassword"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="Show" />-->
+
+        <!-- Forgot Password Link -->
+        <TextView
+            android:id="@+id/tvForgotPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:text="Forgot password?"
+            android:textColor="@color/aquablue" />
+
+        <!-- Login Button -->
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/roundedbutton"
+            android:fontFamily="@font/kaushan_script"
+            android:text="Log In"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+
+        <!-- Register Link -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:text="Don't have an account?"
+            android:textColor="@color/gray"
+            android:textSize="17dp" />
+        <!-- Register Link -->
+        <TextView
+            android:id="@+id/tvRegisterHere"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:text="Register Here"
+            android:textColor="#0075ff"
+            android:textSize="17dp" />
+    </LinearLayout>
+</RelativeLayout>

@@ -28,5 +28,11 @@ class DashboardActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+        binding.btHistory.setOnClickListener{
+            //Create an Intent to start the Locations page
+            val intent = Intent(this,HistoryActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }

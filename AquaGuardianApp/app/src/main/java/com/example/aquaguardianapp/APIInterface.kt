@@ -11,4 +11,7 @@ interface APIInterface {
 
     @GET("waterQuality")
     fun checkWaterQuality(): Call<WaterQualityResponse>
+
+    @GET("locations")
+    fun getLocations():Call<List<LocationResponse>>
 }

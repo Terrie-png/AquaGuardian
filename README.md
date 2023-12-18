@@ -34,11 +34,11 @@ The system integrates with the following hardware components:
 
 ## Contributors
 
-- **Ong Lee Xuan** - Lead Developer and Project Manager
-- **Jakub Lowis** - Sensor Integration Specialist
-- **Raveena Rathnam** - Backend Developer
-- **Kosy Stephanie Ike-Ogoke** - Frontend Developer
-- **Nojus Matusevicius** - Frontend Developer
+- **Ong Lee Xuan** - Responsible for Backend Development.
+- **Jakub Lowis** - Responsible for hardware integration and gathering data from sensors.
+- **Raveena Rathnam** - Responsible for Frontend Development, design, UI testing, usability.
+- **Kosy Stephanie Ike-Ogoke** - Responsible for storing data into database and creating sample data.
+- **Nojus Matusevicius** - Responsible for Frontend Development, design, UI testing, usability.
 
 ## Feature Improvement and Future Functionalities
 

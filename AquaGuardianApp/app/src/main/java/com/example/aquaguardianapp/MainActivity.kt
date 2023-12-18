@@ -32,5 +32,11 @@ class MainActivity : ComponentActivity() {
             startActivity(intent)
             finish()
         }
+        binding.btnLogin.setOnClickListener{
+            //Create an Intent to start the LoginActivity
+            val intent = Intent(this,LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }

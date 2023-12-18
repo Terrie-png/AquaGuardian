@@ -14,4 +14,7 @@ interface APIInterface {
 
     @GET("locations")
     fun getLocations():Call<List<LocationResponse>>
+
+    @GET("history")
+    fun getHistory(): Call<List<HistoryResponse>>
 }

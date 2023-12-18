@@ -1,9 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".HistoryActivity">
+    android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- History Header -->
+    <RelativeLayout
+        android:id="@+id/HistoryHeader"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/aquablue">
+
+        <ImageView
+            android:id="@+id/ivLogo"
+            android:layout_width="100dp"
+            android:layout_height="52dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="10dp"
+            android:padding="2dp"
+            android:src="@drawable/mainlogo" />
+
+        <TextView
+            android:id="@+id/tvLogo"
+            android:layout_width="183dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="160dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/kaushan_script"
+            android:padding="2dp"
+            android:text="History"
+            android:textColor="@color/white"
+            android:textSize="29sp" />
+    </RelativeLayout>
+
+
+    <!-- RecyclerView for history items -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvHistoryList"
+        android:padding="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/HistoryHeader"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10.0dp"
+        android:scrollbars="vertical" />
+    
+    <!-- Clear History Button -->
+    <Button
+        android:id="@+id/btnClearHistory"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/logoutbtn"
+        android:fontFamily="@font/kaushan_script"
+        android:text="Clear History"
+        android:textColor="@color/white"
+        android:textSize="22sp" />
+</RelativeLayout>

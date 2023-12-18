@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.aquaguardianapp.databinding.ActivityLocationBinding
 import com.example.aquaguardianapp.databinding.ActivityRegisterBinding
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
@@ -41,7 +42,8 @@ class LocationActivity : AppCompatActivity(), OnMapReadyCallback {
             override fun onResponse(call: Call<List<LocationResponse>>, response: Response<List<LocationResponse>>) {
                 if (response.isSuccessful) {
                     response.body()?.forEach { location ->
-                        mMap.addMarker(MarkerOptions().position(LatLng(location.latitude, location.longitude)))
+                        mMap.addMarker(MarkerOptions().position(LatLng(location.latitude, location.longitude)).title("DKIT"))
+                        mMap.moveCamera(CameraUpdateFactory.newLatLng(LatLng(location.latitude, location.longitude)))
                     }
                 }
             }

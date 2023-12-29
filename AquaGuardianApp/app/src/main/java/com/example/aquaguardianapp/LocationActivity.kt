@@ -10,6 +10,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.CircleOptions
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MarkerOptions
@@ -43,16 +44,28 @@ class LocationActivity : AppCompatActivity(), OnMapReadyCallback {
         retrofit.getLocations().enqueue(
             object : Callback<List<LocationResponse>> {
             override fun onResponse(call: Call<List<LocationResponse>>, response: Response<List<LocationResponse>>) {
-                if (response.isSuccessful) {val builder = LatLngBounds.Builder()
+                if (response.isSuccessful) {
+                    val builder = LatLngBounds.Builder()
                     response.body()?.forEach { location ->
                         val latLng = LatLng(location.latitude, location.longitude)
-                        mMap.addMarker(MarkerOptions().position(latLng).title("Location"))
+                        mMap.addMarker(MarkerOptions().position(latLng).title("Possible Contaminated Area"))
+
+                        // Adding a red circle around the location
+                        val circleOptions = CircleOptions()
+                            .center(latLng)
+                            .radius(1000.0) // In meters
+                            .strokeWidth(3f)
+                            .strokeColor(R.color.red) // Border color of the circle
+                            .fillColor(0x22FF0000) // Fill color of the circle, semi-transparent
+                        mMap.addCircle(circleOptions)
+
                         builder.include(latLng)
                     }
                     val bounds = builder.build()
 
-                    // Create a camera update that will smoothly move the camera to show all markers
-                    val cu = CameraUpdateFactory.newLatLngBounds(bounds, 100) // 100 is the padding around the bounds
+                    // Adjusting the padding for the camera update
+                    val padding = 100 // offset from edges of the map in pixels
+                    val cu = CameraUpdateFactory.newLatLngBounds(bounds, padding)
                     mMap.animateCamera(cu)
                 }
             }

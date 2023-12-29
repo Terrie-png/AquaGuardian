@@ -1,6 +1,8 @@
 package com.example.aquaguardianapp
 
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.aquaguardianapp.databinding.ActivityLocationBinding
 import com.example.aquaguardianapp.databinding.ActivityRegisterBinding
@@ -42,14 +44,15 @@ class LocationActivity : AppCompatActivity(), OnMapReadyCallback {
             override fun onResponse(call: Call<List<LocationResponse>>, response: Response<List<LocationResponse>>) {
                 if (response.isSuccessful) {
                     response.body()?.forEach { location ->
-                        mMap.addMarker(MarkerOptions().position(LatLng(location.latitude, location.longitude)).title("DKIT"))
-                        mMap.moveCamera(CameraUpdateFactory.newLatLng(LatLng(location.latitude, location.longitude)))
+                        mMap.addMarker(MarkerOptions().position(LatLng(location.latitude, location.longitude)))
                     }
                 }
             }
 
             override fun onFailure(call: Call<List<LocationResponse>>, t: Throwable) {
                 // Handle failure
+                Log.e("LocationActivity", "Error fetching locations", t)
+                Toast.makeText(this@LocationActivity, "Error: ${t.message}", Toast.LENGTH_LONG).show()
             }
         })
     }

@@ -11,6 +11,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MarkerOptions
 import retrofit2.Call
 import retrofit2.Callback
@@ -42,10 +43,17 @@ class LocationActivity : AppCompatActivity(), OnMapReadyCallback {
         retrofit.getLocations().enqueue(
             object : Callback<List<LocationResponse>> {
             override fun onResponse(call: Call<List<LocationResponse>>, response: Response<List<LocationResponse>>) {
-                if (response.isSuccessful) {
+                if (response.isSuccessful) {val builder = LatLngBounds.Builder()
                     response.body()?.forEach { location ->
-                        mMap.addMarker(MarkerOptions().position(LatLng(location.latitude, location.longitude)))
+                        val latLng = LatLng(location.latitude, location.longitude)
+                        mMap.addMarker(MarkerOptions().position(latLng).title("Location"))
+                        builder.include(latLng)
                     }
+                    val bounds = builder.build()
+
+                    // Create a camera update that will smoothly move the camera to show all markers
+                    val cu = CameraUpdateFactory.newLatLngBounds(bounds, 100) // 100 is the padding around the bounds
+                    mMap.animateCamera(cu)
                 }
             }
 

@@ -18,7 +18,7 @@ interface APIInterface {
     @GET("history")
     fun getHistory(): Call<HistoryResponse>
 
-    // API call to clear the history from the backend.
+    // API post request to clear the history from the backend.
     //@POST("clearHistory")
     //    fun clearHistory(): Call<Void>
 }

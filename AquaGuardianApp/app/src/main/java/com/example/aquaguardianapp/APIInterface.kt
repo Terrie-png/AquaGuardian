@@ -16,5 +16,5 @@ interface APIInterface {
     fun getLocations():Call<List<LocationResponse>>
 
     @GET("history")
-    fun getHistory(): Call<List<HistoryItem>>
+    fun getHistory(): Call<HistoryResponse>
 }

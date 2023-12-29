@@ -32,15 +32,18 @@ class HistoryActivity : AppCompatActivity() {
         val retrofit = ServiceBuilder.buildService(APIInterface::class.java)
 
         // Fetch history items
-        retrofit.getHistory().enqueue(object : Callback<List<HistoryItem>> {
-            override fun onResponse(call: Call<List<HistoryItem>>, response: Response<List<HistoryItem>>) {
+        retrofit.getHistory().enqueue(object : Callback<HistoryResponse> {
+            override fun onResponse(
+                call: Call<HistoryResponse>,
+                response: Response<HistoryResponse>
+            ) {
                 if (response.isSuccessful) {
-                    adapter.items = response.body() ?: emptyList()
+                    val historyList = response.body()?.history ?: emptyList()
+                    adapter.items = historyList
                     adapter.notifyDataSetChanged()
                 }
             }
-
-            override fun onFailure(call: Call<List<HistoryItem>>, t: Throwable) {
+            override fun onFailure(call: Call<HistoryResponse>, t: Throwable) {
                 // Log the error as well, which is useful for debugging purposes
                 Log.e("HistoryActivity", "Error fetching history", t)
 
@@ -50,6 +53,26 @@ class HistoryActivity : AppCompatActivity() {
                 }
             }
         })
+
+//        retrofit.getHistory().enqueue(
+//            object : Callback<HistoryResponse> { override fun onResponse(
+//                call: Call<HistoryResponse>,
+//                response: Response<HistoryResponse>
+//            ) {
+//                if (response.isSuccessful) {
+//                    // This is where you access 'history'
+//                    val historyList = response.body()?.history ?: emptyList()
+//                    // ... use historyList
+//                } else {
+//                    // Handle error...
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<HistoryResponse>, t: Throwable) {
+//                // Handle failure...
+//            }
+//        })
+
     }
 }
 

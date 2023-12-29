@@ -32,6 +32,14 @@ class RegisterActivity : AppCompatActivity() {
         binding.btnRegister.setOnClickListener {
           performRegistration()
         }
+        binding.tvLoginLink.setOnClickListener {
+            val intent = Intent(
+                this@RegisterActivity,
+                LoginActivity::class.java
+            )
+            startActivity(intent)
+            finish()
+        }
     }
     private fun performRegistration() {
         val name = binding.etName.text.toString()

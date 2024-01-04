@@ -3,11 +3,12 @@ package com.example.aquaguardianapp
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 
 interface APIInterface {
     @POST("register")
-    fun registerUser(@Body user: User): Call<RegistrationResponse>
+    fun registerUser(@Header("Authorization") idToken: String?, @Body user: User): Call<RegistrationResponse>
 
     @GET("waterQuality")
     fun checkWaterQuality(): Call<WaterQualityResponse>

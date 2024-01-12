@@ -30,13 +30,11 @@ class MainActivity : ComponentActivity() {
             //Create an Intent to start the RegisterActivity
             val intent = Intent(this,RegisterActivity::class.java)
             startActivity(intent)
-            finish()
         }
         binding.btnLogin.setOnClickListener{
             //Create an Intent to start the LoginActivity
             val intent = Intent(this,LoginActivity::class.java)
             startActivity(intent)
-            finish()
         }
     }
 }

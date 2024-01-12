@@ -19,6 +19,9 @@ interface APIInterface {
     @GET("history")
     fun getHistory(): Call<HistoryResponse>
 
+    @POST("login")
+    fun loginWithToken(@Header("Authorization") idToken: String?): Call<LoginResponse>
+
     // API post request to clear the history from the backend.
     //@POST("clearHistory")
     //    fun clearHistory(): Call<Void>

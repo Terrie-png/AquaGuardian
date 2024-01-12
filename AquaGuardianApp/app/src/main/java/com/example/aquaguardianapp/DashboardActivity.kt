@@ -20,19 +20,16 @@ class DashboardActivity : AppCompatActivity() {
             //Create an Intent to start the WaterQuality page
             val intent = Intent(this,WaterQualityActivity::class.java)
             startActivity(intent)
-            finish()
         }
         binding.btLocations.setOnClickListener{
             //Create an Intent to start the Locations page
             val intent = Intent(this,LocationActivity::class.java)
             startActivity(intent)
-            finish()
         }
         binding.btHistory.setOnClickListener{
-            //Create an Intent to start the Locations page
+            //Create an Intent to start the History page
             val intent = Intent(this,HistoryActivity::class.java)
             startActivity(intent)
-            finish()
         }
     }
 }

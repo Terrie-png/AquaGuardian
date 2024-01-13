@@ -1,8 +1,12 @@
 import os
 from flask import Flask, request, jsonify, session
 from firebase_admin import credentials, initialize_app, auth
-from firebase_admin.exceptions import AuthError
 from firebase_admin import auth
+from flask_sqlalchemy import SQLAlchemy
+
+
+db = SQLAlchemy()
+
 
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY")
@@ -14,7 +18,46 @@ if cred_path is None:
 cred = credentials.Certificate(cred_path)
 firebase_app = initialize_app(cred)
 
+# Registration endpoint
+@app.route('/api/register', methods=['POST'])
+def register_user():
+    data = request.get_json()
+    token = data.get('firebaseToken')
+    model_number = data.get('modelNumber')
 
+    if not token or not model_number:
+        return jsonify({"error": "Missing required fields"}), 400
+
+    try:
+        # Verify Firebase ID token and get user's info
+        decoded_token = auth.verify_id_token(token)
+        uid = decoded_token['uid']
+        email = decoded_token.get('email')
+        name = decoded_token.get('name') or email
+
+        # Check if user already exists
+        cursor = db.cursor()
+        cursor.execute('SELECT * FROM User WHERE firebaseUID = %s', (uid,))
+        existing_user = cursor.fetchone()
+
+        if existing_user:
+            return jsonify({"error": "User already exists"}), 400
+
+        # Insert new user into MySQL database
+        cursor.execute('INSERT INTO User (name, email, firebaseUID) VALUES (%s, %s, %s)', (name, email, uid))
+        db.commit()
+        user_id = cursor.lastrowid
+
+        # Insert the SensorData associated with the user
+        cursor.execute('INSERT INTO SensorData (modelNumber, userID, batteryLevel) VALUES (%s, %s, %s)', (model_number, user_id, 100))
+        db.commit()
+        cursor.close()
+
+     
+        return jsonify({"message": "User registered successfully", "userId": user_id}), 201
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400
     
     
     # Login endpoint
@@ -46,55 +89,33 @@ def login_user():
     except Exception as e:
         return jsonify({"error": str(e)}), 400
     
+
     
-@app.route("/logout", methods=["POST"])
-def logout():
+    # Logout endpoint
+@app.route('/api/logout', methods=['POST'])
+def logout_user():
+    data = request.get_json()
+    token = data.get('firebaseToken')
+
+    if not token:
+        return jsonify({"error": "Missing required fields"}), 400
+
     try:
-        # Clear the session or perform any other logout actions
-        session.clear()
+        # Verify Firebase ID token and get user's info
+        decoded_token = auth.verify_id_token(token)
+        uid = decoded_token['uid']
+
+        # Perform the logout operation (if needed)
+        # This might include invalidating session tokens, removing device tokens, etc.
 
         return jsonify({"message": "User logged out successfully"}), 200
 
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        return jsonify({"error": str(e)}), 400
     
     
     
-    
-@app.route('/get_user_token', methods=["POST"])
-def get_user_token():
-    try:
-        # Get the ID token from the request data
-        id_token = request.json.get("id_token")
 
-        if not id_token:
-            return jsonify({"error": "No ID token provided"}), 401
-
-        # Verify the ID token using Firebase Admin SDK
-        decoded_token = auth.verify_id_token(id_token)
-        user_id = decoded_token["uid"]
-
-        # Get the user's existing custom token (if any)
-        user_custom_token = get_or_refresh_token(user_id)
-
-        token_response = {'token': user_custom_token}
-
-        return jsonify(token_response), 200
-
-    except AuthError as e:
-        return jsonify({"error": str(e)}), 401
-
-def get_or_refresh_token(user_id):
-    try:
-        # Create or refresh a custom token for the user using the Firebase Admin SDK
-        custom_token = auth.create_custom_token(user_id)
-
-        return custom_token
-
-    except AuthError as e:
-        # Handle errors, e.g., token creation failure
-        print(f"Error creating custom token: {e}")
-        return None
 
 
 if __name__ == "__main__":

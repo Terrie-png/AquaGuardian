@@ -4,7 +4,7 @@ from flask import Flask, request, jsonify
 
 # Initializing Flask app and SQLAlchemy
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:root@localhost:3306/iot'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:kosys@localhost:3306/aquaguardian'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -13,14 +13,13 @@ class BaseModel(db.Model):
     __abstract__ = True
     # Add common columns or methods if needed
 
-# Define User model
 class User(BaseModel):
-    __tablename__ = "User"
+    __tablename__ = "Users"
     u_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(4096))
     email = db.Column(db.String(4096))
     password=db.Column(db.String(4096))
-    # Add other columns as needed
+
 
 # Define SensorData model
 class SensorData(BaseModel):

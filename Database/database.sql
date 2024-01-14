@@ -51,3 +51,9 @@ INSERT INTO Users (u_id,  username, email, phoneNumber,address) VALUES
     (3,'Alice Johnson', 'alice03@yahoo.com', '0872334455', '789 Pine St, Village'),
     (4,'Matthew Brady', 'matthew04@gmail.com', '0838776655', '101 Cedar St, Countryside');
 
+
+-- Creating a user account
+CREATE USER 'kosys'@'localhost' IDENTIFIED BY 'mypassword';
+
+-- Granting all privileges on a specific database
+GRANT ALL PRIVILEGES ON aquaguardian TO 'kosys'@'localhost';

@@ -47,9 +47,9 @@ class MySubscribeCallback(SubscribeCallback):
             print("connected to channels: {}".format(event.affected_channels))
 
 
-# def activePubnub():
-#     pnb.add_listener(MySubscribeCallback())
-#     pnb.subscribe().channels(channel).with_presence().execute()
+def activePubnub():
+    pnb.add_listener(MySubscribeCallback())
+    pnb.subscribe().channels(channel).execute()
 
     
 def getSensorData():

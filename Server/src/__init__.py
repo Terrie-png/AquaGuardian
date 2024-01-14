@@ -1,9 +1,12 @@
+from concurrent.futures import thread
 import os
 from flask import Flask, request, jsonify, session
 from firebase_admin import credentials, initialize_app, auth
 from firebase_admin import auth
 from flask_sqlalchemy import SQLAlchemy
+import threading
 
+from Server.src.controllers import pubnub_Controller
 
 db = SQLAlchemy()
 
@@ -115,8 +118,11 @@ def logout_user():
     
     
     
-
+def background_task():
+        background_task_thread = threading.Thread(target=pubnub_Controller.activePubnub)
+        background_task_thread.start()
 
 
 if __name__ == "__main__":
     app.run(debug=True)
+    background_task()
